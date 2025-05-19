@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>就活女子会2025 | 理工サーキュラー</title>
+  <style>
+    :root {
+      --primary-color: #004098;
+      --secondary-color: #0066cc;
+      --accent-color: #ff6600;
+      --light-gray: #f5f5f5;
+      --dark-gray: #333333;
+      --text-color: #333333;
+      --white: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--white);
+    }
+    
+    a {
+      text-decoration: none;
+      color: var(--secondary-color);
+      transition: color 0.3s;
+    }
+    
+    a:hover {
+      color: var(--accent-color);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .logo a {
+      color: var(--white);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 1.5rem;
+    }
+    
+    nav ul li a {
+      color: var(--white);
+      font-weight: 500;
+    }
+    
+    nav ul li a:hover {
+      color: #f0f0f0;
+    }
+    
+    /* Breadcrumb */
+    .breadcrumb {
+      background-color: var(--light-gray);
+      padding: 0.8rem 0;
+      font-size: 0.9rem;
+    }
+    
+    .breadcrumb ul {
+      list-style: none;
+      display: flex;
+    }
+    
+    .breadcrumb ul li {
+      display: flex;
+      align-items: center;
+    }
+    
+    .breadcrumb ul li:not(:last-child)::after {
+      content: "›";
+      margin: 0 0.5rem;
+      color: #999;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background-color: var(--light-gray);
+      padding: 4rem 0;
+      text-align: center;
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://via.placeholder.com/1200x600');
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Feature Content */
+    .feature-content {
+      padding: 4rem 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      display: inline-block;
+      background-color: var(--white);
+      padding: 0 1rem;
+      color: var(--primary-color);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: #ddd;
+      z-index: 0;
+    }
+    
+    .participants {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .participant {
+      text-align: center;
+    }
+    
+    .participant-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      background-color: #ddd;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .participant h3 {
+      margin-bottom: 0.3rem;
+      color: var(--primary-color);
+    }
+    
+    .participant p {
+      color: var(--dark-gray);
+      font-size: 0.9rem;
+    }
+    
+    .episode-list {
+      margin-top: 3rem;
+    }
+    
+    .episode {
+      display: flex;
+      margin-bottom: 2rem;
+      background-color: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .episode:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .episode-image {
+      flex: 0 0 300px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .episode-content {
+      flex: 1;
+      padding: 1.5rem;
+    }
+    
+    .episode-content h3 {
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+    
+    .episode-content p {
+      margin-bottom: 1rem;
+      color: var(--dark-gray);
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: var(--white);
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    
+    .btn:hover {
+      background-color: #e55c00;
+      color: var(--white);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 3rem 0 1.5rem;
+    }
+    
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-section ul li a {
+      color: #ccc;
+    }
+    
+    .footer-section ul li a:hover {
+      color: var(--white);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+      }
+      
+      .logo {
+        margin-bottom: 1rem;
+      }
+      
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav ul li {
+        margin: 0 0.7rem 0.5rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .episode {
+        flex-direction: column;
+      }
+      
+      .episode-image {
+        height: 200px;
+        flex: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <a href="../../index.html">理工サーキュラー</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../../feature/shukatsu-joshikai-2025/index.html">特集</a></li>
+          <li><a href="../../career-guide/index.html">就活ガイド</a></li>
+          <li><a href="../../research-story/suzuki-history/index.html">研究歴</a></li>
+          <li><a href="../../labs/sato-lab.html">研究室紹介</a></li>
+          <li><a href="../../culture/books.html">Culture</a></li>
+          <li><a href="../../news/announcements-2025w.html">お知らせ</a></li>
+          <li><a href="../../about/circular.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <ul>
+        <li><a href="../../index.html">ホーム</a></li>
+        <li><a href="../">特集</a></li>
+        <li>就活女子会2025</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <h1>就活女子会2025</h1>
+      <p>2025年新卒採用の就職活動を終えた理工学部の女子学生たちによる座談会。就活の経験や内定先の決め手、理系女子ならではの視点から就職活動を振り返ります。</p>
+    </div>
+  </section>
+
+  <section class="feature-content">
+    <div class="container">
+      <div class="section-title">
+        <h2>参加者紹介</h2>
+      </div>
+      
+      <div class="participants">
+        <div class="participant">
+          <div class="participant-image" style="background-image: url('https://via.placeholder.com/150');"></div>
+          <h3>細川 春香さん</h3>
+          <p>数学専攻博士前期課程2年</p>
+          <p>内定先：日本電気株式会社</p>
+        </div>
+        <div class="participant">
+          <div class="participant-image" style="background-image: url('https://via.placeholder.com/150');"></div>
+          <h3>佐久間 結菜さん</h3>
+          <p>物質応用化学科4年</p>
+          <p>内定先：医薬品メーカー</p>
+        </div>
+        <div class="participant">
+          <div class="participant-image" style="background-image: url('https://via.placeholder.com/150');"></div>
+          <h3>渡邊 理子さん</h3>
+          <p>航空宇宙工学専攻博士前期課程2年</p>
+          <p>内定先：航空会社</p>
+        </div>
+        <div class="participant">
+          <div class="participant-image" style="background-image: url('https://via.placeholder.com/150');"></div>
+          <h3>舌間 響さん</h3>
+          <p>土木工学科4年</p>
+          <p>内定先：水産庁</p>
+        </div>
+        <div class="participant">
+          <div class="participant-image" style="background-image: url('https://via.placeholder.com/150');"></div>
+          <h3>岡田 智秀</h3>
+          <p>理工学部就職指導委員会 委員長</p>
+          <p>まちづくり工学科 教授</p>
+          <p>司会</p>
+        </div>
+      </div>
+      
+      <div class="section-title">
+        <h2>学部長からのメッセージ</h2>
+      </div>
+      <p>理工学部長 交通システム工学科教授 轟 朝幸先生からのメッセージをご覧ください。</p>
+      <div style="text-align: center; margin: 2rem 0;">
+        <a href="intro.html" class="btn">メッセージを読む</a>
+      </div>
+      
+      <div class="section-title">
+        <h2>エピソード</h2>
+      </div>
+      
+      <div class="episode-list">
+        <div class="episode">
+          <div class="episode-image" style="background-image: url('https://via.placeholder.com/300x400');"></div>
+          <div class="episode-content">
+            <h3>Episode 1: はじめの一歩、私の就活</h3>
+            <p>皆さんはいつ頃から就職を意識して、どんなことから就活を始めましたか？ 就職指導課・キャリア支援センターの活用法や、就活準備について語ります。</p>
+            <a href="episode-1.html" class="btn">続きを読む</a>
+          </div>
+        </div>
+        
+        <div class="episode">
+          <div class="episode-image" style="background-image: url('https://via.placeholder.com/300x400');"></div>
+          <div class="episode-content">
+            <h3>Episode 2: 悩んだら〝自分の軸〟に立ち返る</h3>
+            <p>就活で悩んだことは何ですか？ 複数の内定をもらった時の選び方や、自分の軸を見つける方法について語ります。</p>
+            <a href="episode-2.html" class="btn">続きを読む</a>
+          </div>
+        </div>
+        
+        <div class="episode">
+          <div class="episode-image" style="background-image: url('https://via.placeholder.com/300x400');"></div>
+          <div class="episode-content">
+            <h3>Episode 3: 理系女子×働き方</h3>
+            <p>就活するうえで女性としての働き方は意識しましたか？ 例えば女性が活躍できる業界や職場なのかとか、女性が働きやすい福利厚生があるかなど、理系女子ならではの視点から就職活動を振り返ります。</p>
+            <a href="episode-3.html" class="btn">続きを読む</a>
+          </div>
+        </div>
+        
+        <div class="episode">
+          <div class="episode-image" style="background-image: url('https://via.placeholder.com/300x400');"></div>
+          <div class="episode-content">
+            <h3>Episode 4: 就活を終えて見えてきたもの</h3>
+            <p>就活を通して気づいたことを教えてください。英語の勉強や資格取得など、就活前にやっておいたほうが良いことは？ 後輩へのアドバイスも。</p>
+            <a href="episode-4.html" class="btn">続きを読む</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section-title">
+        <h2>フォトギャラリー</h2>
+      </div>
+      <p>座談会の様子や、参加者の就活グッズなどをご覧いただけます。</p>
+      <div style="text-align: center; margin: 2rem 0;">
+        <a href="gallery.html" class="btn">ギャラリーを見る</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>理工サーキュラー</h3>
+          <ul>
+            <li><a href="../../about/circular.html">雑誌紹介</a></li>
+            <li><a href="../../about/circular.html#backnumber">バックナンバー</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>コンテンツ</h3>
+          <ul>
+            <li><a href="../../feature/shukatsu-joshikai-2025/index.html">特集：就活女子会2025</a></li>
+            <li><a href="../../career-guide/index.html">就活ガイド</a></li>
+            <li><a href="../../research-story/suzuki-history/index.html">研究歴</a></li>
+            <li><a href="../../labs/sato-lab.html">研究室紹介</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>日本大学理工学部</h3>
+          <ul>
+            <li><a href="https://www.cst.nihon-u.ac.jp/" target="_blank">公式サイト</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/campus/" target="_blank">キャンパス案内</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/about/contact.html" target="_blank">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 日本大学理工学部広報委員会</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

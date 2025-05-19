@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>イベント情報 2025年冬号 | 理工サーキュラー</title>
+  <style>
+    :root {
+      --primary-color: #004098;
+      --secondary-color: #0066cc;
+      --accent-color: #ff6600;
+      --light-gray: #f5f5f5;
+      --dark-gray: #333333;
+      --text-color: #333333;
+      --white: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--white);
+    }
+    
+    a {
+      text-decoration: none;
+      color: var(--secondary-color);
+      transition: color 0.3s;
+    }
+    
+    a:hover {
+      color: var(--accent-color);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .logo a {
+      color: var(--white);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 1.5rem;
+    }
+    
+    nav ul li a {
+      color: var(--white);
+      font-weight: 500;
+    }
+    
+    nav ul li a:hover {
+      color: #f0f0f0;
+    }
+    
+    /* Breadcrumb */
+    .breadcrumb {
+      background-color: var(--light-gray);
+      padding: 0.8rem 0;
+      font-size: 0.9rem;
+    }
+    
+    .breadcrumb ul {
+      list-style: none;
+      display: flex;
+    }
+    
+    .breadcrumb ul li {
+      display: flex;
+      align-items: center;
+    }
+    
+    .breadcrumb ul li:not(:last-child)::after {
+      content: "›";
+      margin: 0 0.5rem;
+      color: #999;
+    }
+    
+    /* Page Header */
+    .page-header {
+      background-color: var(--light-gray);
+      padding: 4rem 0;
+      text-align: center;
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://via.placeholder.com/1200x600');
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+    }
+    
+    .page-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    .page-description {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    /* Events */
+    .events {
+      padding: 4rem 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      display: inline-block;
+      background-color: var(--white);
+      padding: 0 1rem;
+      color: var(--primary-color);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: #ddd;
+      z-index: 0;
+    }
+    
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    .event-card {
+      background-color: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .event-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .event-image {
+      height: 200px;
+      background-color: #eee;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .event-date-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+    
+    .event-content {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .event-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+    
+    .event-location {
+      font-size: 0.9rem;
+      color: var(--dark-gray);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .event-location::before {
+      content: "📍";
+      margin-right: 0.5rem;
+    }
+    
+    .event-description {
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    
+    .event-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+    
+    .event-department {
+      font-size: 0.9rem;
+      color: var(--dark-gray);
+    }
+    
+    .event-link {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+    }
+    
+    .event-link:hover {
+      background-color: #e55c00;
+      color: var(--white);
+    }
+    
+    /* Featured Event */
+    .featured-event {
+      margin-bottom: 4rem;
+    }
+    
+    .featured-event-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      background-color: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    }
+    
+    .featured-event-image {
+      height: 100%;
+      min-height: 400px;
+      background-color: #eee;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .featured-event-date-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    
+    .featured-event-content {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .featured-event-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+    
+    .featured-event-location {
+      font-size: 1rem;
+      color: var(--dark-gray);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .featured-event-location::before {
+      content: "📍";
+      margin-right: 0.5rem;
+    }
+    
+    .featured-event-description {
+      margin-bottom: 1.5rem;
+    }
+    
+    .featured-event-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+    }
+    
+    .featured-event-department {
+      font-size: 0.9rem;
+      color: var(--dark-gray);
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: var(--white);
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    
+    .btn:hover {
+      background-color: #e55c00;
+      color: var(--white);
+    }
+    
+    /* Past Events */
+    .past-events {
+      padding: 4rem 0;
+      background-color: var(--light-gray);
+    }
+    
+    .past-event {
+      background-color: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+    }
+    
+    .past-event-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .past-event-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+    
+    .past-event-date {
+      font-size: 0.9rem;
+      color: var(--dark-gray);
+      background-color: var(--light-gray);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+    }
+    
+    .past-event-content {
+      margin-bottom: 1rem;
+    }
+    
+    .past-event-content p {
+      margin-bottom: 1rem;
+    }
+    
+    .past-event-content p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .past-event-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+    }
+    
+    .past-event-department {
+      font-size: 0.9rem;
+      color: var(--dark-gray);
+    }
+    
+    .past-event-gallery {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .past-event-gallery-item {
+      width: 60px;
+      height: 60px;
+      background-color: #eee;
+      border-radius: 4px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 3rem 0 1.5rem;
+    }
+    
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-section ul li a {
+      color: #ccc;
+    }
+    
+    .footer-section ul li a:hover {
+      color: var(--white);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+      }
+      
+      .logo {
+        margin-bottom: 1rem;
+      }
+      
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav ul li {
+        margin: 0 0.7rem 0.5rem;
+      }
+      
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .page-description {
+        font-size: 1rem;
+      }
+      
+      .featured-event-inner {
+        grid-template-columns: 1fr;
+      }
+      
+      .featured-event-image {
+        height: 300px;
+      }
+      
+      .event-footer, .past-event-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .event-department, .past-event-department {
+        margin-bottom: 1rem;
+      }
+      
+      .past-event-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .past-event-date {
+        margin-top: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <a href="../index.html">理工サーキュラー</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../feature/shukatsu-joshikai-2025/index.html">特集</a></li>
+          <li><a href="../career-guide/index.html">就活ガイド</a></li>
+          <li><a href="../research-story/suzuki-history/index.html">研究歴</a></li>
+          <li><a href="../labs/sato-lab.html">研究室紹介</a></li>
+          <li><a href="../culture/books.html">Culture</a></li>
+          <li><a href="../news/announcements-2025w.html">お知らせ</a></li>
+          <li><a href="../about/circular.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <ul>
+        <li><a href="../index.html">ホーム</a></li>
+        <li><a href="#">イベント情報</a></li>
+        <li>2025年冬号</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">イベント情報</h1>
+      <p class="page-description">理工学部で開催される各種イベントの情報をご紹介します。</p>
+    </div>
+  </section>
+
+  <section class="featured-event">
+    <div class="container">
+      <div class="section-title">
+        <h2>注目のイベント</h2>
+      </div>
+      
+      <div class="featured-event-inner">
+        <div class="featured-event-image" style="background-image: url('https://via.placeholder.com/800x600');">
+          <div class="featured-event-date-badge">2024年11月3日（日・祝）</div>
+        </div>
+        <div class="featured-event-content">
+          <h3 class="featured-event-title">船橋キャンパスウォッチング</h3>
+          <p class="featured-event-location">船橋キャンパス</p>
+          
+          <div class="featured-event-description">
+            <p>船橋キャンパスウォッチングは、理工学部の研究・教育活動を広く一般の方々に公開するイベントです。各学科の研究室による展示や実験、体験コーナーなど、科学技術の魅力を体感できる多彩なプログラムを用意しています。</p>
+            <p>同日開催の「桜理祭」と合わせてお楽しみください。入場無料、事前申込不要です。</p>
+          </div>
+          
+          <div class="featured-event-footer">
+            <div class="featured-event-department">主催：日本大学理工学部</div>
+            <a href="https://www.cst.nihon-u.ac.jp/campus/funabashi/watching/" target="_blank" class="btn">詳細を見る</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="events">
+    <div class="container">
+      <div class="section-title">
+        <h2>今後のイベント</h2>
+      </div>
+      
+      <div class="event-grid">
+        <div class="event-card">
+          <div class="event-image" style="background-image: url('https://via.placeholder.com/400x300');">
+            <div class="event-date-badge">2024年11月3日（日・祝）</div>
+          </div>
+          <div class="event-content">
+            <h3 class="event-title">桜理祭</h3>
+            <p class="event-location">船橋キャンパス</p>
+            <div class="event-description">
+              <p>理工学部の学園祭「桜理祭」では、学生による研究発表や模擬店、ステージイベントなど様々な催しが行われます。学生の創意工夫が詰まった企画をぜひお楽しみください。</p>
+            </div>
+            <div class="event-footer">
+              <div class="event-department">主催：桜理祭実行委員会</div>
+              <a href="#" class="event-link">詳細</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="event-card">
+          <div class="event-image" style="background-image: url('https://via.placeholder.com/400x300');">
+            <div class="event-date-badge">2024年11月3日（日・祝）</div>
+          </div>
+          <div class="event-content">
+            <h3 class="event-title">ホームカミングデー</h3>
+            <p class="event-location">船橋キャンパス</p>
+            <div class="event-description">
+              <p>卒業生の皆様をキャンパスにお迎えする「ホームカミングデー」を開催します。懐かしい恩師や同窓生との再会、現在の理工学部の様子をご覧いただける機会です。</p>
+            </div>
+            <div class="event-footer">
+              <div class="event-department">主催：日本大学理工学部校友会</div>
+              <a href="#" class="event-link">詳細</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="event-card">
+          <div class="event-image" style="background-image: url('https://via.placeholder.com/400x300');">
+            <div class="event-date-badge">2024年12月</div>
+          </div>
+          <div class="event-content">
+            <h3 class="event-title">第69回理工学部学術講演会</h3>
+            <p class="event-location">駿河台キャンパス</p>
+            <div class="event-description">
+              <p>理工学部の教員、大学院生、学部生による研究成果の発表会です。16の部会にわたり多数の発表が行われ、最新の研究成果に触れることができます。</p>
+            </div>
+            <div class="event-footer">
+              <div class="event-department">主催：日本大学理工学部</div>
+              <a href="#" class="event-link">詳細</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="past-events">
+    <div class="container">
+      <div class="section-title">
+        <h2>開催報告</h2>
+      </div>
+      
+      <div class="past-event">
+        <div class="past-event-header">
+          <h3 class="past-event-title">第68回理工学部学術講演会</h3>
+          <div class="past-event-date">2023年12月3日</div>
+        </div>
+        <div class="past-event-content">
+          <p>令和6年度第68回理工学部学術講演会は、12月3日に滞りなく終了しました。本年度も多数の発表申し込みをいただき、16の部会にわたり約480件の発表が行われました。ご参加いただいた大学院生、学部生、教員の皆様、また、学術講演会の実施に協力いただきました教職員の皆様に心より感謝申し上げます。</p>
+          <p>本年度の講演会は対面形式で行い、ポスターセッションもほぼ従来の形態で実施しました。また、特別セッションとして、学術賞記念講演（まちづくり工学科 西山孝樹准教授、量子科学研究所 行方直人准教授）と、日本大学特別研究および日本大学災害研究ソサイエティ（NUDS）の成果報告が行われました。15学部からメンバーが参加するNUDSのセッションは、学外へのオンライン配信も実施しました。</p>
+          <p>本年度も優秀な講演発表者には「優秀発表賞」として轟学部長より表彰状が授与されます。学生の皆様がこの学術講演会を契機に、学会や国際会議での発表に挑戦されることを大いに期待しています。</p>
+          <p>次年度の学術講演会は令和7年12月の開催を予定しています。さらに多くの方々の発表およびご参加をお待ちしています。</p>
+        </div>
+        <div class="past-event-footer">
+          <div class="past-event-department">研究事務課</div>
+          <div class="past-event-gallery">
+            <div class="past-event-gallery-item" style="background-image: url('https://via.placeholder.com/60x60');"></div>
+            <div class="past-event-gallery-item" style="background-image: url('https://via.placeholder.com/60x60');"></div>
+            <div class="past-event-gallery-item" style="background-image: url('https://via.placeholder.com/60x60');"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>理工サーキュラー</h3>
+          <ul>
+            <li><a href="../about/circular.html">雑誌紹介</a></li>
+            <li><a href="../about/circular.html#backnumber">バックナンバー</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>コンテンツ</h3>
+          <ul>
+            <li><a href="../feature/shukatsu-joshikai-2025/index.html">特集：就活女子会2025</a></li>
+            <li><a href="../career-guide/index.html">就活ガイド</a></li>
+            <li><a href="../research-story/suzuki-history/index.html">研究歴</a></li>
+            <li><a href="../labs/sato-lab.html">研究室紹介</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>日本大学理工学部</h3>
+          <ul>
+            <li><a href="https://www.cst.nihon-u.ac.jp/" target="_blank">公式サイト</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/campus/" target="_blank">キャンパス案内</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/about/contact.html" target="_blank">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 日本大学理工学部広報委員会</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

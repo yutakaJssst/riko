@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>書籍紹介 | Culture | 理工サーキュラー</title>
+  <style>
+    :root {
+      --primary-color: #004098;
+      --secondary-color: #0066cc;
+      --accent-color: #ff6600;
+      --light-gray: #f5f5f5;
+      --dark-gray: #333333;
+      --text-color: #333333;
+      --white: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--white);
+    }
+    
+    a {
+      text-decoration: none;
+      color: var(--secondary-color);
+      transition: color 0.3s;
+    }
+    
+    a:hover {
+      color: var(--accent-color);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .logo a {
+      color: var(--white);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 1.5rem;
+    }
+    
+    nav ul li a {
+      color: var(--white);
+      font-weight: 500;
+    }
+    
+    nav ul li a:hover {
+      color: #f0f0f0;
+    }
+    
+    /* Breadcrumb */
+    .breadcrumb {
+      background-color: var(--light-gray);
+      padding: 0.8rem 0;
+      font-size: 0.9rem;
+    }
+    
+    .breadcrumb ul {
+      list-style: none;
+      display: flex;
+    }
+    
+    .breadcrumb ul li {
+      display: flex;
+      align-items: center;
+    }
+    
+    .breadcrumb ul li:not(:last-child)::after {
+      content: "›";
+      margin: 0 0.5rem;
+      color: #999;
+    }
+    
+    /* Page Header */
+    .page-header {
+      background-color: var(--light-gray);
+      padding: 4rem 0;
+      text-align: center;
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://via.placeholder.com/1200x600');
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+    }
+    
+    .page-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    .page-description {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    /* Book List */
+    .book-list {
+      padding: 4rem 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      display: inline-block;
+      background-color: var(--white);
+      padding: 0 1rem;
+      color: var(--primary-color);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: #ddd;
+      z-index: 0;
+    }
+    
+    .books {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .book {
+      background-color: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .book:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .book-cover {
+      height: 300px;
+      background-color: #eee;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .book-info {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .book-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+    
+    .book-author {
+      font-size: 0.9rem;
+      color: var(--dark-gray);
+      margin-bottom: 1rem;
+    }
+    
+    .book-description {
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    
+    .book-recommender {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--dark-gray);
+      text-align: right;
+      margin-top: auto;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 3rem 0 1.5rem;
+    }
+    
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-section ul li a {
+      color: #ccc;
+    }
+    
+    .footer-section ul li a:hover {
+      color: var(--white);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+      }
+      
+      .logo {
+        margin-bottom: 1rem;
+      }
+      
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav ul li {
+        margin: 0 0.7rem 0.5rem;
+      }
+      
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .page-description {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <a href="../index.html">理工サーキュラー</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../feature/shukatsu-joshikai-2025/index.html">特集</a></li>
+          <li><a href="../career-guide/index.html">就活ガイド</a></li>
+          <li><a href="../research-story/suzuki-history/index.html">研究歴</a></li>
+          <li><a href="../labs/sato-lab.html">研究室紹介</a></li>
+          <li><a href="../culture/books.html">Culture</a></li>
+          <li><a href="../news/announcements-2025w.html">お知らせ</a></li>
+          <li><a href="../about/circular.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <ul>
+        <li><a href="../index.html">ホーム</a></li>
+        <li><a href="#">Culture</a></li>
+        <li>書籍紹介</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">書籍紹介</h1>
+      <p class="page-description">教員や学生によるおすすめ書籍の紹介。知識を広げ、視野を拡げる一冊に出会いましょう。</p>
+    </div>
+  </section>
+
+  <section class="book-list">
+    <div class="container">
+      <div class="section-title">
+        <h2>おすすめ書籍</h2>
+      </div>
+      
+      <div class="books">
+        <div class="book">
+          <div class="book-cover" style="background-image: url('https://via.placeholder.com/300x450');"></div>
+          <div class="book-info">
+            <h3 class="book-title">『子どもたちに語る 日中二千年史』</h3>
+            <p class="book-author">小島 毅 著／ちくまプリマー新書</p>
+            <div class="book-description">
+              <p>私たちは、常に歴史の中にいる。私たちが生活している日本という国の歴史はいつの時代も隣国中国の圧倒的影響下にあった。国家の誕生から東アジアの覇権を争った近現代までの日中関係を一気に駆け抜ける、日中関係研究の代表者である小島毅が優しく愉快に説き明かす『日中二千年史』をお勧めしたい。</p>
+              <p>人間が歴史の中にいる以上、歴史を学ぶ必要がある。隣国との関係から自国の歴史、また日中両国の関係史を知り、そこから失敗を学び教訓を得て、未来に向けた良好的日中関係を構築する願いの一助となる一冊である。ぜひ読んでみてください。</p>
+            </div>
+            <p class="book-recommender">一般教育教室初修外国語系列教授 郭 海燕</p>
+          </div>
+        </div>
+        
+        <div class="book">
+          <div class="book-cover" style="background-image: url('https://via.placeholder.com/300x450');"></div>
+          <div class="book-info">
+            <h3 class="book-title">『Python ではじめる数理最適化（第２版）ケーススタディでモデリングのスキルを身につけよう』</h3>
+            <p class="book-author">岩永 二郎、石原 響太、西村 直樹、田中 一樹 著／オーム社</p>
+            <div class="book-description">
+              <p>この本では、普段の生活で現れるさまざまな現実的な問題を、数理最適化という枠組みで定式化して解く方法を紹介しています。例えば学校のクラス編成や、小売店での効果的なキャンペーンの立案といった身近な問題を、どう数学的に定式化するかが紹介されています。</p>
+              <p>また、プログラミング言語での実装例も載っており、実際にコンピュータを使って解くこともできます。私は、この本で紹介されている配送計画の定式化と、趣味である旅行の効果的な旅程作成を結びつけて、自然に数理最適化を学べています。数理最適化の学習の一冊目として、とてもおすすめです。</p>
+            </div>
+            <p class="book-recommender">数学科４年 吉江 岳人</p>
+          </div>
+        </div>
+        
+        <div class="book">
+          <div class="book-cover" style="background-image: url('https://via.placeholder.com/300x450');"></div>
+          <div class="book-info">
+            <h3 class="book-title">『理系女子的生き方のススメ』</h3>
+            <p class="book-author">美馬 のゆり 著／岩波ジュニア新書</p>
+            <div class="book-description">
+              <p>理系分野で活躍する女性たちのキャリアパスや、理系女子が直面する課題とその乗り越え方について書かれた一冊です。著者自身の経験や様々な分野で活躍する女性研究者・技術者のインタビューを通して、理系女子のロールモデルを提示しています。</p>
+              <p>理系を選んだ女子学生が将来のキャリアを考える上で参考になるだけでなく、理系分野におけるダイバーシティの重要性についても考えさせられる内容です。理系女子だけでなく、理系分野に興味のある全ての学生にお勧めします。</p>
+            </div>
+            <p class="book-recommender">物理学科准教授 佐藤 明子</p>
+          </div>
+        </div>
+        
+        <div class="book">
+          <div class="book-cover" style="background-image: url('https://via.placeholder.com/300x450');"></div>
+          <div class="book-info">
+            <h3 class="book-title">『エンジニアのためのデザイン思考入門』</h3>
+            <p class="book-author">安藤 昌也 著／技術評論社</p>
+            <div class="book-description">
+              <p>エンジニアがデザイン思考を学ぶことの意義と実践方法について解説した本です。技術的な視点だけでなく、ユーザー視点でものづくりを考えるための方法論が具体的な事例とともに紹介されています。</p>
+              <p>研究室でも「デザインとは何か？」を常に考えていますが、この本はエンジニアリングとデザインの融合について考えるきっかけを与えてくれます。技術だけでなく、人間中心の視点を持つことの重要性を学べる一冊です。</p>
+            </div>
+            <p class="book-recommender">海洋建築工学科准教授 佐藤 信治</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>理工サーキュラー</h3>
+          <ul>
+            <li><a href="../about/circular.html">雑誌紹介</a></li>
+            <li><a href="../about/circular.html#backnumber">バックナンバー</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>コンテンツ</h3>
+          <ul>
+            <li><a href="../feature/shukatsu-joshikai-2025/index.html">特集：就活女子会2025</a></li>
+            <li><a href="../career-guide/index.html">就活ガイド</a></li>
+            <li><a href="../research-story/suzuki-history/index.html">研究歴</a></li>
+            <li><a href="../labs/sato-lab.html">研究室紹介</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>日本大学理工学部</h3>
+          <ul>
+            <li><a href="https://www.cst.nihon-u.ac.jp/" target="_blank">公式サイト</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/campus/" target="_blank">キャンパス案内</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/about/contact.html" target="_blank">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 日本大学理工学部広報委員会</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

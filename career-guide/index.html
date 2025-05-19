@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>就活で困ったら？理工学部の活用術５選 | 理工サーキュラー</title>
+  <style>
+    :root {
+      --primary-color: #004098;
+      --secondary-color: #0066cc;
+      --accent-color: #ff6600;
+      --light-gray: #f5f5f5;
+      --dark-gray: #333333;
+      --text-color: #333333;
+      --white: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--white);
+    }
+    
+    a {
+      text-decoration: none;
+      color: var(--secondary-color);
+      transition: color 0.3s;
+    }
+    
+    a:hover {
+      color: var(--accent-color);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .logo a {
+      color: var(--white);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 1.5rem;
+    }
+    
+    nav ul li a {
+      color: var(--white);
+      font-weight: 500;
+    }
+    
+    nav ul li a:hover {
+      color: #f0f0f0;
+    }
+    
+    /* Breadcrumb */
+    .breadcrumb {
+      background-color: var(--light-gray);
+      padding: 0.8rem 0;
+      font-size: 0.9rem;
+    }
+    
+    .breadcrumb ul {
+      list-style: none;
+      display: flex;
+    }
+    
+    .breadcrumb ul li {
+      display: flex;
+      align-items: center;
+    }
+    
+    .breadcrumb ul li:not(:last-child)::after {
+      content: "›";
+      margin: 0 0.5rem;
+      color: #999;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background-color: var(--light-gray);
+      padding: 4rem 0;
+      text-align: center;
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://via.placeholder.com/1200x600');
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Program Schedule */
+    .program-schedule {
+      background-color: var(--white);
+      padding: 3rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .schedule-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--primary-color);
+    }
+    
+    .schedule-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: var(--light-gray);
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .schedule-list {
+      list-style: none;
+    }
+    
+    .schedule-item {
+      display: flex;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    
+    .schedule-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    
+    .schedule-month {
+      flex: 0 0 100px;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+    
+    .schedule-content {
+      flex: 1;
+    }
+    
+    /* Case Studies */
+    .case-studies {
+      padding: 4rem 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      display: inline-block;
+      background-color: var(--white);
+      padding: 0 1rem;
+      color: var(--primary-color);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: #ddd;
+      z-index: 0;
+    }
+    
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .case-item {
+      background-color: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .case-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .case-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .case-content {
+      padding: 1.5rem;
+    }
+    
+    .case-content h3 {
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+    
+    .case-content p {
+      margin-bottom: 1rem;
+      color: var(--dark-gray);
+    }
+    
+    .case-number {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: var(--white);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 30px;
+      margin-right: 0.5rem;
+      font-weight: bold;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: var(--white);
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    
+    .btn:hover {
+      background-color: #e55c00;
+      color: var(--white);
+    }
+    
+    /* Student Voices */
+    .student-voices {
+      background-color: var(--light-gray);
+      padding: 4rem 0;
+    }
+    
+    .voice-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .voice-item {
+      background-color: var(--white);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    
+    .voice-item::before {
+      content: "\201C"; /* Opening double quote */
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      font-size: 4rem;
+      color: var(--primary-color);
+      opacity: 0.2;
+    }
+    
+    .voice-item p {
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+    
+    .voice-author {
+      text-align: right;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+    
+    /* Contact Info */
+    .contact-info {
+      padding: 4rem 0;
+      text-align: center;
+    }
+    
+    .contact-card {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: var(--light-gray);
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .contact-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .contact-details {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    .contact-location {
+      flex: 1 1 300px;
+      text-align: left;
+    }
+    
+    .contact-location h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+    
+    .contact-location p {
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 3rem 0 1.5rem;
+    }
+    
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-section ul li a {
+      color: #ccc;
+    }
+    
+    .footer-section ul li a:hover {
+      color: var(--white);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+      }
+      
+      .logo {
+        margin-bottom: 1rem;
+      }
+      
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav ul li {
+        margin: 0 0.7rem 0.5rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .schedule-item {
+        flex-direction: column;
+      }
+      
+      .schedule-month {
+        margin-bottom: 0.5rem;
+      }
+      
+      .contact-details {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <a href="../index.html">理工サーキュラー</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../feature/shukatsu-joshikai-2025/index.html">特集</a></li>
+          <li><a href="../career-guide/index.html">就活ガイド</a></li>
+          <li><a href="../research-story/suzuki-history/index.html">研究歴</a></li>
+          <li><a href="../labs/sato-lab.html">研究室紹介</a></li>
+          <li><a href="../culture/books.html">Culture</a></li>
+          <li><a href="../news/announcements-2025w.html">お知らせ</a></li>
+          <li><a href="../about/circular.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <ul>
+        <li><a href="../index.html">ホーム</a></li>
+        <li>就活ガイド</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <h1>就活で困ったら？理工学部の活用術５選</h1>
+      <p>就職指導課・キャリア支援センターが提供するサービスや講座を活用して、効果的な就職活動を行うためのガイド。あなたの未来を徹底サポートします！</p>
+    </div>
+  </section>
+
+  <section class="program-schedule">
+    <div class="container">
+      <h2 class="schedule-title">就職・キャリア支援プログラム</h2>
+      <div class="schedule-container">
+        <ul class="schedule-list">
+          <li class="schedule-item">
+            <div class="schedule-month">4月</div>
+            <div class="schedule-content">就活スタートガイダンス、インターンシップ講座</div>
+          </li>
+          <li class="schedule-item">
+            <div class="schedule-month">5～6月</div>
+            <div class="schedule-content">業界・企業・職種研究講座</div>
+          </li>
+          <li class="schedule-item">
+            <div class="schedule-month">6月</div>
+            <div class="schedule-content">合同企業説明会 ※最終学年</div>
+          </li>
+          <li class="schedule-item">
+            <div class="schedule-month">7月</div>
+            <div class="schedule-content">適性試験模試①</div>
+          </li>
+          <li class="schedule-item">
+            <div class="schedule-month">10月</div>
+            <div class="schedule-content">総合就職ガイダンス</div>
+          </li>
+          <li class="schedule-item">
+            <div class="schedule-month">10〜12月</div>
+            <div class="schedule-content">業界・企業研究セミナー（オンライン）</div>
+          </li>
+          <li class="schedule-item">
+            <div class="schedule-month">11月</div>
+            <div class="schedule-content">適性試験模試②、履歴書・エントリーシート講座</div>
+          </li>
+          <li class="schedule-item">
+            <div class="schedule-month">12月</div>
+            <div class="schedule-content">適性試験対策講座＆適性試験模試③</div>
+          </li>
+          <li class="schedule-item">
+            <div class="schedule-month">2月</div>
+            <div class="schedule-content">企業訪問対策講座、業界・企業研究セミナー（合同・対面）、面接講座、模擬面接・模擬グループディスカッション</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-studies">
+    <div class="container">
+      <div class="section-title">
+        <h2>活用術５選</h2>
+      </div>
+      
+      <div class="case-grid">
+        <div class="case-item">
+          <div class="case-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+          <div class="case-content">
+            <h3><span class="case-number">1</span>就活って何からはじめたらいいの？</h3>
+            <p>就活スタートガイダンスや総合就職ガイダンスに参加して、就活の全体像を把握しよう！</p>
+            <a href="case-1.html" class="btn">詳細を見る</a>
+          </div>
+        </div>
+        
+        <div class="case-item">
+          <div class="case-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+          <div class="case-content">
+            <h3><span class="case-number">2</span>自分に合った業種や職種がわかりません……</h3>
+            <p>学内企業イベントでさまざまな企業に出会おう！</p>
+            <a href="case-2.html" class="btn">詳細を見る</a>
+          </div>
+        </div>
+        
+        <div class="case-item">
+          <div class="case-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+          <div class="case-content">
+            <h3><span class="case-number">3</span>履歴書やエントリーシートを書いてみたけど、これでいいの？</h3>
+            <p>就職指導課・キャリア支援センターで添削してもらおう！</p>
+            <a href="case-3.html" class="btn">詳細を見る</a>
+          </div>
+        </div>
+        
+        <div class="case-item">
+          <div class="case-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+          <div class="case-content">
+            <h3><span class="case-number">4</span>とにかく面接が不安です……</h3>
+            <p>個別相談コーナーのキャリアアドバイザーを予約しよう！</p>
+            <a href="case-4.html" class="btn">詳細を見る</a>
+          </div>
+        </div>
+        
+        <div class="case-item">
+          <div class="case-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+          <div class="case-content">
+            <h3><span class="case-number">5</span>複数の内定をいただき迷っています</h3>
+            <p>個別相談コーナーのキャリアアドバイザーを予約しよう！</p>
+            <a href="case-5.html" class="btn">詳細を見る</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="student-voices">
+    <div class="container">
+      <div class="section-title">
+        <h2>Students' Voices</h2>
+      </div>
+      
+      <div class="voice-container">
+        <div class="voice-item">
+          <p>漠然とした不安を抱えていた就職活動でしたが、就職指導課・キャリア支援センターのガイダンスに参加して、全体像がわかり、具体的な行動計画を立てることができました。とくに自己分析は、自分の強みや弱みを客観的に見ることができて良かったです。</p>
+          <div class="voice-author">2026年卒業予定</div>
+        </div>
+        
+        <div class="voice-item">
+          <p>「学内合同企業説明会」で、思っていた以上に多くの企業と出会うことができ、業界の多様さに驚きました。偶然直感で立ち寄ったブースでは、意外な大手企業からも自分の所属学科に需要があると知り、選択肢が広がりました。</p>
+          <div class="voice-author">2025年卒業</div>
+        </div>
+        
+        <div class="voice-item">
+          <p>履歴書を書くのが苦手でしたが、就職指導課・キャリア支援センターで添削してもらい、自信を持って提出することができました。さらに、企業からのメールに返信するときのマナーについても教えてもらい、とても助かりました。</p>
+          <div class="voice-author">2025年卒業</div>
+        </div>
+        
+        <div class="voice-item">
+          <p>模擬面接により緊張せずに話すことに慣れて、本番でもスムーズに自己紹介をすることができました。キャリアアドバイザーからのアドバイスのおかげで、内定をゲットできました！</p>
+          <div class="voice-author">2025年卒業</div>
+        </div>
+        
+        <div class="voice-item">
+          <p>複数の内定をもらって迷っていたのですが、キャリアアドバイザーに相談して比較要素を具体的に検証し、自分の将来のビジョンに合った企業を納得して選ぶことができました。</p>
+          <div class="voice-author">2025年卒業</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-info">
+    <div class="container">
+      <div class="section-title">
+        <h2>就職指導課・キャリア支援センター</h2>
+      </div>
+      
+      <div class="contact-card">
+        <h3>あなたの未来を徹底サポート！</h3>
+        <p>日大理工には、あなたの就職活動やキャリア形成を強力にサポートする「就職指導課・キャリア支援センター」があります。この「活用術」を読んで「私にも当てはまる！」と思ったら、ぜひ足を運んでみてください。</p>
+        
+        <div class="contact-details">
+          <div class="contact-location">
+            <h4>駿河台キャンパス</h4>
+            <p>タワー・スコラ６階</p>
+          </div>
+          
+          <div class="contact-location">
+            <h4>船橋キャンパス</h4>
+            <p>13号館１階</p>
+          </div>
+        </div>
+        
+        <div style="margin-top: 1.5rem;">
+          <h4>開室時間</h4>
+          <p>月～金曜日 9:00-18:00</p>
+          <p>土曜日 9:00-13:00</p>
+        </div>
+        
+        <div style="margin-top: 1.5rem;">
+          <p>CST-VOICE、NU就職ナビからも情報を配信！</p>
+          <p>NUメール内「就職指導課」を検索</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>理工サーキュラー</h3>
+          <ul>
+            <li><a href="../about/circular.html">雑誌紹介</a></li>
+            <li><a href="../about/circular.html#backnumber">バックナンバー</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>コンテンツ</h3>
+          <ul>
+            <li><a href="../feature/shukatsu-joshikai-2025/index.html">特集：就活女子会2025</a></li>
+            <li><a href="../career-guide/index.html">就活ガイド</a></li>
+            <li><a href="../research-story/suzuki-history/index.html">研究歴</a></li>
+            <li><a href="../labs/sato-lab.html">研究室紹介</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>日本大学理工学部</h3>
+          <ul>
+            <li><a href="https://www.cst.nihon-u.ac.jp/" target="_blank">公式サイト</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/campus/" target="_blank">キャンパス案内</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/about/contact.html" target="_blank">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 日本大学理工学部広報委員会</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>吉川研究室 | 電気工学科 | 理工サーキュラー</title>
+  <style>
+    :root {
+      --primary-color: #004098;
+      --secondary-color: #0066cc;
+      --accent-color: #ff6600;
+      --light-gray: #f5f5f5;
+      --dark-gray: #333333;
+      --text-color: #333333;
+      --white: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--white);
+    }
+    
+    a {
+      text-decoration: none;
+      color: var(--secondary-color);
+      transition: color 0.3s;
+    }
+    
+    a:hover {
+      color: var(--accent-color);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .logo a {
+      color: var(--white);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 1.5rem;
+    }
+    
+    nav ul li a {
+      color: var(--white);
+      font-weight: 500;
+    }
+    
+    nav ul li a:hover {
+      color: #f0f0f0;
+    }
+    
+    /* Breadcrumb */
+    .breadcrumb {
+      background-color: var(--light-gray);
+      padding: 0.8rem 0;
+      font-size: 0.9rem;
+    }
+    
+    .breadcrumb ul {
+      list-style: none;
+      display: flex;
+    }
+    
+    .breadcrumb ul li {
+      display: flex;
+      align-items: center;
+    }
+    
+    .breadcrumb ul li:not(:last-child)::after {
+      content: "›";
+      margin: 0 0.5rem;
+      color: #999;
+    }
+    
+    /* Lab Header */
+    .lab-header {
+      background-color: var(--light-gray);
+      padding: 4rem 0;
+      text-align: center;
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://via.placeholder.com/1200x600');
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+    }
+    
+    .lab-title {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    .lab-department {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    .lab-professor {
+      font-size: 1.4rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    /* Lab Content */
+    .lab-content {
+      padding: 4rem 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      display: inline-block;
+      background-color: var(--white);
+      padding: 0 1rem;
+      color: var(--primary-color);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: #ddd;
+      z-index: 0;
+    }
+    
+    .lab-description {
+      margin-bottom: 3rem;
+    }
+    
+    .lab-description p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+    
+    .lab-photos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .lab-photo {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .lab-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .lab-photo figcaption {
+      padding: 1rem;
+      background-color: var(--light-gray);
+      font-size: 0.9rem;
+    }
+    
+    .research-areas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .research-area {
+      background-color: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .research-area:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .research-area-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .research-area-content {
+      padding: 1.5rem;
+    }
+    
+    .research-area-content h3 {
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+    
+    .research-area-content p {
+      margin-bottom: 1rem;
+      color: var(--dark-gray);
+    }
+    
+    .lab-info {
+      background-color: var(--light-gray);
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 3rem;
+    }
+    
+    .lab-info h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+    
+    .lab-info ul {
+      list-style: none;
+      margin-left: 1rem;
+    }
+    
+    .lab-info ul li {
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    
+    .lab-info ul li::before {
+      content: "•";
+      color: var(--primary-color);
+      font-weight: bold;
+      position: absolute;
+      left: -1rem;
+    }
+    
+    .lab-projects {
+      margin-bottom: 3rem;
+    }
+    
+    .lab-projects h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+    
+    .lab-projects ul {
+      list-style: none;
+      margin-left: 1rem;
+    }
+    
+    .lab-projects ul li {
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    
+    .lab-projects ul li::before {
+      content: "•";
+      color: var(--primary-color);
+      font-weight: bold;
+      position: absolute;
+      left: -1rem;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 3rem 0 1.5rem;
+    }
+    
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-section ul li a {
+      color: #ccc;
+    }
+    
+    .footer-section ul li a:hover {
+      color: var(--white);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+      }
+      
+      .logo {
+        margin-bottom: 1rem;
+      }
+      
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav ul li {
+        margin: 0 0.7rem 0.5rem;
+      }
+      
+      .lab-title {
+        font-size: 2rem;
+      }
+      
+      .lab-department, .lab-professor {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <a href="../index.html">理工サーキュラー</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../feature/shukatsu-joshikai-2025/index.html">特集</a></li>
+          <li><a href="../career-guide/index.html">就活ガイド</a></li>
+          <li><a href="../research-story/suzuki-history/index.html">研究歴</a></li>
+          <li><a href="../labs/sato-lab.html">研究室紹介</a></li>
+          <li><a href="../culture/books.html">Culture</a></li>
+          <li><a href="../news/announcements-2025w.html">お知らせ</a></li>
+          <li><a href="../about/circular.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <ul>
+        <li><a href="../index.html">ホーム</a></li>
+        <li><a href="#">研究室紹介</a></li>
+        <li>吉川研究室</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="lab-header">
+    <div class="container">
+      <h1 class="lab-title">吉川研究室</h1>
+      <p class="lab-department">電気工学科</p>
+      <p class="lab-professor">吉川 将洋 教授</p>
+    </div>
+  </section>
+
+  <section class="lab-content">
+    <div class="container">
+      <div class="section-title">
+        <h2>リバーシブル燃料電池技術の開発とエネルギーの地産地消を目指して</h2>
+      </div>
+      
+      <div class="lab-description">
+        <p>吉川研究室では現在、大学院2年生1名、1年生3名、学部4年生8名の計12名が在籍し、燃料電池の評価・解析技術の構築に取り組んでいます。燃料電池といってもさまざまな種類がありますが、当研究室ではとくに固体酸化物形燃料電池（SOFC）や次世代型であるプロトン伝導セラミック燃料電池（PCFC）を対象としています。</p>
+        
+        <p>近年は、電力が足りないときには水素を燃料として高効率に発電でき、電力が余ったときには電解して水素を作るリバーシブル運転が可能な燃料電池の性能評価技術に注力しています。</p>
+        
+        <p>具体的には、当研究室が2021年から委託しているNEDO事業：燃料電池等利用の飛躍的拡大に向けた課題解決型産学官連携研究開発事業の「可逆動作型プロトン伝導セラミック燃料電池の新規な健全性評価・解析技術の開発」の中で、PCFCの健全性評価技術の開発を行い、パナソニックや東京ガス製のボタンセルを用いた実験を通じて、燃料組成や温度変化に対する精度の高い性能予測手法を構築しています。この技術により、システム運転パラメータをインプットすることで本来示すべき出力電圧の予測が可能となり、自己診断機能の実現が期待されています。</p>
+        
+        <p>他にも、メーカーとの共同研究の中で、実際のSOFCの特性を考慮した水素やメタン製造システムの構成方法やそのシステム効率を試算する研究も進めており、これらの研究を通じてエネルギーの地産地消を目指し、脱炭素社会の実現に貢献していきたいと考えています。</p>
+      </div>
+      
+      <div class="lab-photos">
+        <figure class="lab-photo">
+          <img src="https://via.placeholder.com/600x400" alt="燃料電池（PCFC）試験装置" />
+          <figcaption>図１：燃料電池（PCFC）試験装置</figcaption>
+        </figure>
+        <figure class="lab-photo">
+          <img src="https://via.placeholder.com/600x400" alt="燃料電池を用いたメタン製造システム構成の一例" />
+          <figcaption>図２：燃料電池を用いたメタン製造システム構成の一例</figcaption>
+        </figure>
+      </div>
+      
+      <div class="section-title">
+        <h2>研究領域</h2>
+      </div>
+      
+      <div class="research-areas">
+        <div class="research-area">
+          <div class="research-area-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+          <div class="research-area-content">
+            <h3>リバーシブル燃料電池の評価・解析技術</h3>
+            <p>電力が足りないときには水素を燃料として高効率に発電でき、電力が余ったときには電解して水素を作るリバーシブル運転が可能な燃料電池の性能評価技術の開発に取り組んでいます。</p>
+          </div>
+        </div>
+        
+        <div class="research-area">
+          <div class="research-area-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+          <div class="research-area-content">
+            <h3>プロトン伝導セラミック燃料電池（PCFC）の健全性評価</h3>
+            <p>PCFCの健全性評価技術の開発を行い、燃料組成や温度変化に対する精度の高い性能予測手法を構築しています。この技術により、システム運転パラメータをインプットすることで本来示すべき出力電圧の予測が可能となります。</p>
+          </div>
+        </div>
+        
+        <div class="research-area">
+          <div class="research-area-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+          <div class="research-area-content">
+            <h3>水素・メタン製造システムの研究</h3>
+            <p>実際のSOFCの特性を考慮した水素やメタン製造システムの構成方法やそのシステム効率を試算する研究を進めています。これらの研究を通じてエネルギーの地産地消を目指し、脱炭素社会の実現に貢献していきたいと考えています。</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="lab-info">
+        <h3>研究室情報</h3>
+        <ul>
+          <li>所在地：駿河台キャンパス タワー・スコラ15階 S1502室</li>
+          <li>研究分野：燃料電池、エネルギー変換、水素エネルギー</li>
+          <li>所属学生：大学院2年生1名、1年生3名、学部4年生8名（計12名）</li>
+          <li>主な設備：燃料電池（PCFC）試験装置、ガス分析装置、インピーダンス測定装置</li>
+        </ul>
+      </div>
+      
+      <div class="lab-projects">
+        <h3>主な研究プロジェクト</h3>
+        <ul>
+          <li>NEDO事業：燃料電池等利用の飛躍的拡大に向けた課題解決型産学官連携研究開発事業「可逆動作型プロトン伝導セラミック燃料電池の新規な健全性評価・解析技術の開発」（2021年～）</li>
+          <li>メーカーとの共同研究：SOFCの特性を考慮した水素やメタン製造システムの構成方法やシステム効率の試算</li>
+          <li>エネルギーの地産地消を目指した研究開発</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>理工サーキュラー</h3>
+          <ul>
+            <li><a href="../about/circular.html">雑誌紹介</a></li>
+            <li><a href="../about/circular.html#backnumber">バックナンバー</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>コンテンツ</h3>
+          <ul>
+            <li><a href="../feature/shukatsu-joshikai-2025/index.html">特集：就活女子会2025</a></li>
+            <li><a href="../career-guide/index.html">就活ガイド</a></li>
+            <li><a href="../research-story/suzuki-history/index.html">研究歴</a></li>
+            <li><a href="../labs/sato-lab.html">研究室紹介</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>日本大学理工学部</h3>
+          <ul>
+            <li><a href="https://www.cst.nihon-u.ac.jp/" target="_blank">公式サイト</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/campus/" target="_blank">キャンパス案内</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/about/contact.html" target="_blank">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 日本大学理工学部広報委員会</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

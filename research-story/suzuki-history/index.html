@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自分史・コンピュータ史 ―さまざまな恩師との出会い | 理工サーキュラー</title>
+  <style>
+    :root {
+      --primary-color: #004098;
+      --secondary-color: #0066cc;
+      --accent-color: #ff6600;
+      --light-gray: #f5f5f5;
+      --dark-gray: #333333;
+      --text-color: #333333;
+      --white: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      line-height: 1.8;
+      color: var(--text-color);
+      background-color: var(--white);
+    }
+    
+    a {
+      text-decoration: none;
+      color: var(--secondary-color);
+      transition: color 0.3s;
+    }
+    
+    a:hover {
+      color: var(--accent-color);
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .logo a {
+      color: var(--white);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 1.5rem;
+    }
+    
+    nav ul li a {
+      color: var(--white);
+      font-weight: 500;
+    }
+    
+    nav ul li a:hover {
+      color: #f0f0f0;
+    }
+    
+    /* Breadcrumb */
+    .breadcrumb {
+      background-color: var(--light-gray);
+      padding: 0.8rem 0;
+      font-size: 0.9rem;
+    }
+    
+    .breadcrumb ul {
+      list-style: none;
+      display: flex;
+    }
+    
+    .breadcrumb ul li {
+      display: flex;
+      align-items: center;
+    }
+    
+    .breadcrumb ul li:not(:last-child)::after {
+      content: "›";
+      margin: 0 0.5rem;
+      color: #999;
+    }
+    
+    /* Article Styles */
+    .article-header {
+      padding: 3rem 0 2rem;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .article-title {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+      line-height: 1.3;
+    }
+    
+    .article-subtitle {
+      font-size: 1.3rem;
+      color: var(--dark-gray);
+      margin-bottom: 1.5rem;
+    }
+    
+    .article-author {
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+    
+    .article-content {
+      padding: 3rem 0;
+    }
+    
+    .article-section {
+      margin-bottom: 2.5rem;
+    }
+    
+    .article-section h2 {
+      font-size: 1.6rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--light-gray);
+    }
+    
+    .article-section p {
+      margin-bottom: 1.2rem;
+      text-align: justify;
+    }
+    
+    .article-section .figure {
+      margin: 2rem 0;
+      text-align: center;
+    }
+    
+    .article-section .figure img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .article-section .figure figcaption {
+      margin-top: 0.8rem;
+      font-size: 0.9rem;
+      color: var(--dark-gray);
+    }
+    
+    blockquote {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background-color: var(--light-gray);
+      border-left: 4px solid var(--primary-color);
+      font-style: italic;
+    }
+    
+    blockquote p {
+      margin-bottom: 0 !important;
+    }
+    
+    .article-footer {
+      padding: 2rem 0;
+      border-top: 1px solid #eee;
+      font-size: 0.9rem;
+      color: var(--dark-gray);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 3rem 0 1.5rem;
+    }
+    
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-section ul li a {
+      color: #ccc;
+    }
+    
+    .footer-section ul li a:hover {
+      color: var(--white);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+      }
+      
+      .logo {
+        margin-bottom: 1rem;
+      }
+      
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav ul li {
+        margin: 0 0.7rem 0.5rem;
+      }
+      
+      .article-title {
+        font-size: 1.8rem;
+      }
+      
+      .article-subtitle {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <a href="../../index.html">理工サーキュラー</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../../feature/shukatsu-joshikai-2025/index.html">特集</a></li>
+          <li><a href="../../career-guide/index.html">就活ガイド</a></li>
+          <li><a href="../../research-story/suzuki-history/index.html">研究歴</a></li>
+          <li><a href="../../labs/sato-lab.html">研究室紹介</a></li>
+          <li><a href="../../culture/books.html">Culture</a></li>
+          <li><a href="../../news/announcements-2025w.html">お知らせ</a></li>
+          <li><a href="../../about/circular.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <ul>
+        <li><a href="../../index.html">ホーム</a></li>
+        <li><a href="../">研究歴</a></li>
+        <li>自分史・コンピュータ史</li>
+      </ul>
+    </div>
+  </div>
+
+  <article>
+    <div class="container">
+      <header class="article-header">
+        <h1 class="article-title">私の研究歴170 自分史・コンピュータ史</h1>
+        <h2 class="article-subtitle">―さまざまな恩師との出会い</h2>
+        <div class="article-author">物理学科教授 鈴木 潔光</div>
+      </header>
+
+      <div class="article-content">
+        <section class="article-section">
+          <h2>学部生から院生時代</h2>
+          <p>私は、１９７８年に日本大学理工学部に入学しました。高校時代数学が好きだった私は、数学教師になりたいと思い、数学科を受験したのですが、第二志望である物理学科に入ってしまいました。高校時代、私は、物理はどちらかというと苦手な方でした。というより納得できなかったと言った方がいいかもしれません。例えば"単振動"の説明として、高校の教科書では、"ばねの運動と等速円運動を横から見た現象は同じである"という記述があります。「なんでばねの運動を解析するのに、等速円運動を横から見なきゃいけないんだ！」なんてことがひっかかり、どうしても好きになれなかったのです。それでも物理学科に入学したのは、物理学科でも数学の教員免許が取れるから、という理由でした。</p>
+          
+          <p>ただ、この間違って物理学科に入学したことが、人生を変える最大のラッキーな間違いだったのです。というのは、１年生の数学のノート（図１）にも示した通り、当時は、物理学科でもイプシロン−デルタ論法の数学の授業が行われており、とても私の能力ではついていけないと思ったからです。ところが物理学は、先ほどの"単振動"にしても、微分方程式の解を求めれば公式を導出することができ、数学が好きだった私は、「これなら私、物理できるかも」と思ったのです。</p>
+          
+          <figure class="figure">
+            <img src="assets/figure1.jpg" alt="１年次に受講した数学の授業ノート" />
+            <figcaption>図１ １年次に受講した数学の授業ノート</figcaption>
+          </figure>
+          
+          <p>いい先生に出会えたのも、幸運だったと思います。当時核融合研究室は、吉村久光教授がグループの代表を務めていました。吉村先生は、なぜか私をかわいがってくださって、私は大学院に進学することになりました。その入学試験の面接で、「君は大学院を修了したら、どうするつもりだ？」と聞かれたので、「数学の教員になろうと思います」と答えました。すると、「何？教員？ 君！ もったいないよ。君にはノーベル賞を取ってもらいたいからね」などという、到底面接試験とは思えない返答が返って来ました。</p>
+          
+          <p>"豚もおだてりゃ何とやら"ではありませんが、結局私は大学院の後期課程に進むことになりました。ただ、実験よりは理論をやりたかったので、同じ核融合研究室の濱田繁雄教授の指導を受けました。テーマは、現在も船橋校舎にある、磁場反転配位プラズマ（ＦＲＣプラズマ）の理論計算。ただ、当時私が使用していた計算機は、理工学部にあった HITAC M200H で、その計算速度は、今のパソコンの百分の一程度の速さしかありませんでした。メモリーもせいぜい数メガバイト程度で、計算にはかなり苦労をした思いがあります。</p>
+          
+          <p>このＦＲＣプラズマの最大の特徴は、圧力の高いプラズマを閉じ込めることができることです。また、プラズマが円筒容器中に浮いた状態で、閉じた磁力線内に閉じ込められており、非常にユニークな装置です。ただ、プラズマ半径が小さければ小さいほど、高い圧力のプラズマになるという有名な公式があります。私が執筆した１９８４年の論文で、円筒容器の形状を変化させることにより、半径の大きなプラズマでも、高い圧力のプラズマが閉じ込められるのではないかという結果を得ることができ、それをモデル化して説明しました。また、１９８５年の論文では、あるパラメータを変化させると、円筒内にある閉じた磁力線が開いてしまって、閉じ込めに適さないのではないかという結果が出て、それもモデル化により説明しました。実は私は、計算に苦労していたのですが、モデル化した式の方がどうも評価されていたようです。後で知ったのですが、最初のモデルの式は、"鈴木・濱田の式"、二つ目の式は"鈴木の関係式"と呼ばれていたようです（図２）。</p>
+          
+          <figure class="figure">
+            <img src="assets/figure2.jpg" alt="鈴木の関係式と計算結果" />
+            <figcaption>図２ 鈴木の関係式と計算結果（J. Phys. Soc. Jpn. 54 (6) pp.2156.）</figcaption>
+          </figure>
+        </section>
+
+        <section class="article-section">
+          <h2>就職が決まるまで</h2>
+          <p>私は学位取得後、運よく広島大学で研究を続けられることになりました。いい気になって広島に行った私は、愕然とすることになります。それは、世の中には優秀な人がたくさんいるということを悟ったことでした。中には先生より優秀だと思われるような学生もいました。その中で、私もそれなりに頑張ったつもりだったのですが、いろいろあって一年で広島を去ることになりました。ただ、私が東京に帰る最後の日に、上司から「あなたもこれからいろいろあるでしょうが、どんなにつまらない仕事だと思ってもいい加減にやってはだめだ。一生懸命やりなさい」と言われました。その時はよくわからなかったのですが、その言葉の重みは後になってわかることになりました。</p>
+        </section>
+
+        <section class="article-section">
+          <h2>就職後</h2>
+          <p>東京に戻って一年後、１９８９年に私は何とか物理学科に職を得ることができました。そして三年後に、入試実行委員会委員に任命されました。そこで理工学部で初めてエクセルを利用して入学試験の判定等をする仕事の責任者を任されました。今ではエクセルなんて誰でも使えますが、その頃はあまり知られていなかったのです。入学試験の仕事ですから、失敗は許されません。かなり神経を使いましたが、知らないうちに一生懸命やっていました。ただ、そこでエクセルというソフトが教育に利用できるのではないかということを考えるようになったのです。</p>
+        </section>
+
+        <section class="article-section">
+          <h2>教育を研究に</h2>
+          <p>１９９８年に、コンピュータリテラシが全学科で実施されることになりました。私はそこでエクセルを利用した教育実践を試み、それを論文にすると、新聞が掲載してくれました（図３、４）。ところが、学科内での評価は冷ややかで、「こんなものは学問ではない！」などと言われてしまいました。その時助けてくださったのが、当時船橋校舎次長をされていた高田邦道教授です。高田先生は「世の中に学問でないなどというものは一切ないんだ！」と言ってくださり、当時の物理学科の教授と喧嘩してくださいました。本当に感謝しています。この時、広島大学時代の上司の言葉が浮かびました。入学試験の仕事に必死に取り組んでいた私を、高田先生が見ていてくださっていて、助けてくれたんだなぁと。仕事に真剣に取り組むことの重要さをその時実感しました。</p>
+          
+          <figure class="figure">
+            <img src="assets/figure3.jpg" alt="初めて執筆した教育に関する論文" />
+            <figcaption>図３ 初めて執筆した教育に関する論文（大学の物理教育，1998年３号，pp.42.）</figcaption>
+          </figure>
+          
+          <figure class="figure">
+            <img src="assets/figure4.jpg" alt="新聞記事" />
+            <figcaption>図４ 新聞記事（日本工業新聞，1998年12月４日朝刊）</figcaption>
+          </figure>
+          
+          <p>その後は、平田典子先生（現・数学科特任教授）との出会いや、優秀な大学院生との出会いもあり、ＩＣＴを利用した教育に関する研究を進めることができました。その内容については、興味のある方は、ホームページ等を見ていただければと思います。</p>
+        </section>
+
+        <section class="article-section">
+          <h2>おわりに</h2>
+          <p>最後に申し上げたいのは、ＩＣＴに関する進歩はあまりに急激で、例えば苦労して作成した教育用コンテンツ等も、すぐに使えなくなってしまう可能性があるということです。ここでダーウィンの言葉を引用して本稿を締めたいと思います。</p>
+          
+          <blockquote>
+            <p>"最も強いものが生き残れるわけではない"、"最も賢いものが生き残れるわけでもない"、"唯一生き残れるのは環境の変化に適応できたもののみである"。</p>
+          </blockquote>
+          
+          <p>大変なことだとは思いますが、これからの時代を生きていくみなさんは、この時代の変化にぜひ適応していってほしいと思っています。</p>
+        </section>
+      </div>
+
+      <footer class="article-footer">
+        <p>本記事は理工サーキュラー No.203（2025年冬号）に掲載されました。</p>
+      </footer>
+    </div>
+  </article>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>理工サーキュラー</h3>
+          <ul>
+            <li><a href="../../about/circular.html">雑誌紹介</a></li>
+            <li><a href="../../about/circular.html#backnumber">バックナンバー</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>コンテンツ</h3>
+          <ul>
+            <li><a href="../../feature/shukatsu-joshikai-2025/index.html">特集：就活女子会2025</a></li>
+            <li><a href="../../career-guide/index.html">就活ガイド</a></li>
+            <li><a href="../../research-story/suzuki-history/index.html">研究歴</a></li>
+            <li><a href="../../labs/sato-lab.html">研究室紹介</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>日本大学理工学部</h3>
+          <ul>
+            <li><a href="https://www.cst.nihon-u.ac.jp/" target="_blank">公式サイト</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/campus/" target="_blank">キャンパス案内</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/about/contact.html" target="_blank">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 日本大学理工学部広報委員会</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

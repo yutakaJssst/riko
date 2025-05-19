@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode 1: はじめの一歩、私の就活 | 就活女子会2025 | 理工サーキュラー</title>
+  <style>
+    :root {
+      --primary-color: #004098;
+      --secondary-color: #0066cc;
+      --accent-color: #ff6600;
+      --light-gray: #f5f5f5;
+      --dark-gray: #333333;
+      --text-color: #333333;
+      --white: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--white);
+    }
+    
+    a {
+      text-decoration: none;
+      color: var(--secondary-color);
+      transition: color 0.3s;
+    }
+    
+    a:hover {
+      color: var(--accent-color);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .logo a {
+      color: var(--white);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 1.5rem;
+    }
+    
+    nav ul li a {
+      color: var(--white);
+      font-weight: 500;
+    }
+    
+    nav ul li a:hover {
+      color: #f0f0f0;
+    }
+    
+    /* Breadcrumb */
+    .breadcrumb {
+      background-color: var(--light-gray);
+      padding: 0.8rem 0;
+      font-size: 0.9rem;
+    }
+    
+    .breadcrumb ul {
+      list-style: none;
+      display: flex;
+    }
+    
+    .breadcrumb ul li {
+      display: flex;
+      align-items: center;
+    }
+    
+    .breadcrumb ul li:not(:last-child)::after {
+      content: "›";
+      margin: 0 0.5rem;
+      color: #999;
+    }
+    
+    /* Episode Header */
+    .episode-header {
+      background-color: var(--light-gray);
+      padding: 3rem 0;
+      text-align: center;
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://via.placeholder.com/1200x600');
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+    }
+    
+    .episode-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    .episode-description {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    /* Episode Content */
+    .episode-content {
+      padding: 4rem 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      display: inline-block;
+      background-color: var(--white);
+      padding: 0 1rem;
+      color: var(--primary-color);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: #ddd;
+      z-index: 0;
+    }
+    
+    .conversation {
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .question {
+      margin-bottom: 2rem;
+    }
+    
+    .question-text {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    
+    .question-text::before {
+      content: "Q";
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+    
+    .answers {
+      margin-bottom: 2rem;
+    }
+    
+    .answer {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px dashed #ddd;
+    }
+    
+    .answer:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    
+    .answer-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+    
+    .answer-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 1rem;
+      background-color: #ddd;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .answer-name {
+      font-weight: bold;
+    }
+    
+    .answer-text {
+      padding-left: 4rem;
+    }
+    
+    .answer-text p {
+      margin-bottom: 1rem;
+    }
+    
+    .answer-text p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .highlight-box {
+      background-color: var(--light-gray);
+      padding: 1.5rem;
+      border-left: 4px solid var(--primary-color);
+      margin: 2rem 0;
+    }
+    
+    .highlight-box h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .highlight-box p {
+      margin-bottom: 0;
+    }
+    
+    .item-photo {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    
+    .item-photo img {
+      max-width: 300px;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .item-photo figcaption {
+      margin-top: 0.8rem;
+      font-size: 0.9rem;
+      color: var(--dark-gray);
+    }
+    
+    .navigation-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+    }
+    
+    .nav-button {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    
+    .nav-button:hover {
+      background-color: var(--secondary-color);
+      color: var(--white);
+    }
+    
+    .nav-button.next::after {
+      content: " →";
+    }
+    
+    .nav-button.prev::before {
+      content: "← ";
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 3rem 0 1.5rem;
+    }
+    
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-section ul li a {
+      color: #ccc;
+    }
+    
+    .footer-section ul li a:hover {
+      color: var(--white);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+      }
+      
+      .logo {
+        margin-bottom: 1rem;
+      }
+      
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav ul li {
+        margin: 0 0.7rem 0.5rem;
+      }
+      
+      .episode-title {
+        font-size: 2rem;
+      }
+      
+      .episode-description {
+        font-size: 1rem;
+      }
+      
+      .answer-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .answer-avatar {
+        margin-bottom: 0.5rem;
+      }
+      
+      .answer-text {
+        padding-left: 0;
+      }
+      
+      .navigation-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .nav-button {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <a href="../../index.html">理工サーキュラー</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../../feature/shukatsu-joshikai-2025/index.html">特集</a></li>
+          <li><a href="../../career-guide/index.html">就活ガイド</a></li>
+          <li><a href="../../research-story/suzuki-history/index.html">研究歴</a></li>
+          <li><a href="../../labs/sato-lab.html">研究室紹介</a></li>
+          <li><a href="../../culture/books.html">Culture</a></li>
+          <li><a href="../../news/announcements-2025w.html">お知らせ</a></li>
+          <li><a href="../../about/circular.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <ul>
+        <li><a href="../../index.html">ホーム</a></li>
+        <li><a href="../">特集</a></li>
+        <li><a href="index.html">就活女子会2025</a></li>
+        <li>Episode 1: はじめの一歩、私の就活</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="episode-header">
+    <div class="container">
+      <h1 class="episode-title">Episode 1: はじめの一歩、私の就活</h1>
+      <p class="episode-description">皆さんはいつ頃から就職を意識して、どんなことから就活を始めましたか？ 就職指導課・キャリア支援センターの活用法や、就活準備について語ります。</p>
+    </div>
+  </section>
+
+  <section class="episode-content">
+    <div class="container">
+      <div class="conversation">
+        <div class="question">
+          <p class="question-text">皆さんはいつ頃から就職というものを意識して、どんなことから就活を始めましたか？</p>
+        </div>
+        
+        <div class="answers">
+          <div class="answer">
+            <div class="answer-header">
+              <div class="answer-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
+              <div class="answer-name">舌間 響さん（土木工学科4年）</div>
+            </div>
+            <div class="answer-text">
+              <p>私は学部1年生の頃から、公務員だったり、民間企業でも土木工学科の就職先に多い建設業だったり、いろんな説明会に行って自分の進路を検討しました。その結果、国家公務員の総合職試験を受けたいと決めたので、ちょっと早いのですが2年生から少しずつ対策を始めました。</p>
+            </div>
+          </div>
+          
+          <div class="answer">
+            <div class="answer-header">
+              <div class="answer-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
+              <div class="answer-name">渡邊 理子さん（航空宇宙工学専攻博士前期課程2年）</div>
+            </div>
+            <div class="answer-text">
+              <p>3年生の時にインターンシップ講座を受けて、そういうものがあるなら行ってみないと、ということで。ただ当時、自分の行きたい企業は人工衛星の開発メーカーだったので、なかなか学部生では難しくて。大学院に行きたい思いもあったので、進学しました。3年生で失敗していたので今回は早めに動こうと、M1の4月にキャリア支援センターで就活の進め方を相談しました。まずは自己分析から。ライフラインチャートをキャリアアドバイザーにいただいて、幼稚園の頃から小学校、中学校、高校での出来事を書いて、どう浮き沈みがあったのか、その時にどう乗り越えていったのかを整理しました。</p>
+            </div>
+          </div>
+          
+          <div class="answer">
+            <div class="answer-header">
+              <div class="answer-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
+              <div class="answer-name">佐久間 結菜さん（物質応用化学科4年）</div>
+            </div>
+            <div class="answer-text">
+              <p>私は3年生の4月頃、マイナビ主催の合同企業説明会に参加して、その中で興味のあった企業を中心に会社説明会に参加していきました。</p>
+            </div>
+          </div>
+          
+          <div class="answer">
+            <div class="answer-header">
+              <div class="answer-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
+              <div class="answer-name">細川 春香さん（数学専攻博士前期課程2年）</div>
+            </div>
+            <div class="answer-text">
+              <p>就職を意識したのは3年生です。もともと大学院への進学を決めていたので、学部時代はほとんど就活をしなかったのですが、周りはしていたので意識はしていました。ただ、それ以前から就活を見越した資格取得は行っていました。本格的に就活を始めたのはM1の6月です。実は5月末まで、初めて学会に出るためのアブストラクトの締切で就活どころではなかったので、提出した次の日からどんどんインターンシップに応募していって就活が始まりました。</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="question">
+          <p class="question-text">どのような資格を取得しましたか？</p>
+        </div>
+        
+        <div class="answers">
+          <div class="answer">
+            <div class="answer-header">
+              <div class="answer-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
+              <div class="answer-name">細川 春香さん</div>
+            </div>
+            <div class="answer-text">
+              <p>TOEIC、ITパスポート試験、基本情報技術者試験、あとAWS認定クラウドプラクティショナーを持っています。</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="question">
+          <p class="question-text">面接での企業側の反応はいかがでしたか？</p>
+        </div>
+        
+        <div class="answers">
+          <div class="answer">
+            <div class="answer-header">
+              <div class="answer-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
+              <div class="answer-name">細川 春香さん</div>
+            </div>
+            <div class="answer-text">
+              <p>とても良かったです。特にAWSは学生で持っている人が少ないので、かなり差別化できたと思います。</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="question">
+          <p class="question-text">数学科ではみんな在学中にIT系の資格を取得するのですか？</p>
+        </div>
+        
+        <div class="answers">
+          <div class="answer">
+            <div class="answer-header">
+              <div class="answer-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
+              <div class="answer-name">細川 春香さん</div>
+            </div>
+            <div class="answer-text">
+              <p>基本情報技術者試験ですと就活に向けて取ったり、あとは入社したら取らないといけないということで今勉強している人もかなりいます。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section-title">
+        <h2>就職指導課・キャリア支援センターを利用しよう</h2>
+      </div>
+      
+      <div class="conversation">
+        <div class="question">
+          <p class="question-text">皆さんが利用したり参加したりした就職指導課・キャリア支援センターのサービスや講座などを教えてください。</p>
+        </div>
+        
+        <div class="answers">
+          <div class="answer">
+            <div class="answer-header">
+              <div class="answer-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
+              <div class="answer-name">渡邊 理子さん</div>
+            </div>
+            <div class="answer-text">
+              <p>特に利用したのが個別相談コーナーのキャリアカウンセリングです。予約できるのが週1回までなので、ほぼ毎週利用しました。ES（エントリーシート）の添削から最後の面接まで見ていただきましたし、私は複数の企業から内定をいただきましたので、内定先を決める際も相談しました。</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="question">
+          <p class="question-text">就活の各段階で相談する内容が変わっていったのですね？</p>
+        </div>
+        
+        <div class="answers">
+          <div class="answer">
+            <div class="answer-header">
+              <div class="answer-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
+              <div class="answer-name">渡邊 理子さん</div>
+            </div>
+            <div class="answer-text">
+              <p>本当にそのとおりです。インターンシップ前、自己分析、インターンシップの振り返り、冬のインターンシップの準備をして、本選考。すべてのシーンで「こういうものを書いた」とか「ここまでやった」とか、報告することを目標にしていました。</p>
+            </div>
+          </div>
+          
+          <div class="answer">
+            <div class="answer-header">
+              <div class="answer-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
+              <div class="answer-name">佐久間 結菜さん</div>
+            </div>
+            <div class="answer-text">
+              <p>私もほぼ一緒です。私がキャリアカウンセリングを受けたきっかけは、夏のインターンシップになかなか通らなかったことが悔しかったから。ESを出して合格したらインターンシップに参加できるという企業が多数なのですが、そこをなかなか突破できなかった。私もESから本選考の面接まで、すべてサポートしていただきました。キャリアアドバイザーは全員女性なのですが、それぞれ自分とフィーリングの合う方がいらっしゃると思います。私が相談していた方は気さくで話しやすかったので、ESについても面接についても気軽に相談できました。</p>
+            </div>
+          </div>
+          
+          <div class="answer">
+            <div class="answer-header">
+              <div class="answer-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
+              <div class="answer-name">渡邊 理子さん</div>
+            </div>
+            <div class="answer-text">
+              <p>私はインターンシップ講座や企業ごとの説明会にも参加しましたが、忙しくて直接行けない時でもオンラインで参加できたので、とてもありがたかったです。</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="question">
+          <p class="question-text">舌間さんは理工学部の公務員試験対策講座を利用しましたか？</p>
+        </div>
+        
+        <div class="answers">
+          <div class="answer">
+            <div class="answer-header">
+              <div class="answer-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
+              <div class="answer-name">舌間 響さん</div>
+            </div>
+            <div class="answer-text">
+              <p>私は2年生と3年生の2年間、対策講座を利用しました。2年生で利用するのは異例だったようで、そのやり取りを就職指導課で何度かさせていただきました。</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="question">
+          <p class="question-text">学外の公務員予備校は利用しましたか？</p>
+        </div>
+        
+        <div class="answers">
+          <div class="answer">
+            <div class="answer-header">
+              <div class="answer-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
+              <div class="answer-name">舌間 響さん</div>
+            </div>
+            <div class="answer-text">
+              <p>学外は利用していません。模試も学内のものを受けました。</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="question">
+          <p class="question-text">そうすると、公務員試験対策は学内の対策講座で事足りるということですね？</p>
+        </div>
+        
+        <div class="answers">
+          <div class="answer">
+            <div class="answer-header">
+              <div class="answer-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
+              <div class="answer-name">舌間 響さん</div>
+            </div>
+            <div class="answer-text">
+              <p>そうですね。そう思います。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="highlight-box">
+        <h3>My 就活グッズ</h3>
+        <figure class="item-photo">
+          <img src="https://via.placeholder.com/300x200" alt="過去問">
+          <figcaption>「過去問」理工学部主催の公務員試験対策講座で配布されたもの。5周は解きました。（舌間）</figcaption>
+        </figure>
+      </div>
+      
+      <div class="navigation-buttons">
+        <a href="intro.html" class="nav-button prev">学部長からのメッセージ</a>
+        <a href="episode-2.html" class="nav-button next">Episode 2: 悩んだら〝自分の軸〟に立ち返る</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>理工サーキュラー</h3>
+          <ul>
+            <li><a href="../../about/circular.html">雑誌紹介</a></li>
+            <li><a href="../../about/circular.html#backnumber">バックナンバー</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>コンテンツ</h3>
+          <ul>
+            <li><a href="../../feature/shukatsu-joshikai-2025/index.html">特集：就活女子会2025</a></li>
+            <li><a href="../../career-guide/index.html">就活ガイド</a></li>
+            <li><a href="../../research-story/suzuki-history/index.html">研究歴</a></li>
+            <li><a href="../../labs/sato-lab.html">研究室紹介</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>日本大学理工学部</h3>
+          <ul>
+            <li><a href="https://www.cst.nihon-u.ac.jp/" target="_blank">公式サイト</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/campus/" target="_blank">キャンパス案内</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/about/contact.html" target="_blank">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 日本大学理工学部広報委員会</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

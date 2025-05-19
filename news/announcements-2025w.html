@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お知らせ 2025年冬号 | 理工サーキュラー</title>
+  <style>
+    :root {
+      --primary-color: #004098;
+      --secondary-color: #0066cc;
+      --accent-color: #ff6600;
+      --light-gray: #f5f5f5;
+      --dark-gray: #333333;
+      --text-color: #333333;
+      --white: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--white);
+    }
+    
+    a {
+      text-decoration: none;
+      color: var(--secondary-color);
+      transition: color 0.3s;
+    }
+    
+    a:hover {
+      color: var(--accent-color);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .logo a {
+      color: var(--white);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 1.5rem;
+    }
+    
+    nav ul li a {
+      color: var(--white);
+      font-weight: 500;
+    }
+    
+    nav ul li a:hover {
+      color: #f0f0f0;
+    }
+    
+    /* Breadcrumb */
+    .breadcrumb {
+      background-color: var(--light-gray);
+      padding: 0.8rem 0;
+      font-size: 0.9rem;
+    }
+    
+    .breadcrumb ul {
+      list-style: none;
+      display: flex;
+    }
+    
+    .breadcrumb ul li {
+      display: flex;
+      align-items: center;
+    }
+    
+    .breadcrumb ul li:not(:last-child)::after {
+      content: "›";
+      margin: 0 0.5rem;
+      color: #999;
+    }
+    
+    /* Page Header */
+    .page-header {
+      background-color: var(--light-gray);
+      padding: 4rem 0;
+      text-align: center;
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://via.placeholder.com/1200x600');
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+    }
+    
+    .page-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    .page-description {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    /* Announcements */
+    .announcements {
+      padding: 4rem 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      display: inline-block;
+      background-color: var(--white);
+      padding: 0 1rem;
+      color: var(--primary-color);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: #ddd;
+      z-index: 0;
+    }
+    
+    .announcement {
+      background-color: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .announcement:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .announcement-header {
+      padding: 1.5rem;
+      background-color: var(--primary-color);
+      color: var(--white);
+    }
+    
+    .announcement-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .announcement-meta {
+      display: flex;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+    
+    .announcement-date {
+      margin-right: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .announcement-date::before {
+      content: "📅";
+      margin-right: 0.3rem;
+    }
+    
+    .announcement-department {
+      display: flex;
+      align-items: center;
+    }
+    
+    .announcement-department::before {
+      content: "🏢";
+      margin-right: 0.3rem;
+    }
+    
+    .announcement-content {
+      padding: 1.5rem;
+    }
+    
+    .announcement-content p {
+      margin-bottom: 1rem;
+    }
+    
+    .announcement-content p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .announcement-content ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .announcement-content ul li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .announcement-content ul li:last-child {
+      margin-bottom: 0;
+    }
+    
+    .announcement-footer {
+      padding: 1rem 1.5rem;
+      background-color: var(--light-gray);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .announcement-contact {
+      font-size: 0.9rem;
+    }
+    
+    .announcement-link {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+    }
+    
+    .announcement-link:hover {
+      background-color: #e55c00;
+      color: var(--white);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 3rem 0 1.5rem;
+    }
+    
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-section ul li a {
+      color: #ccc;
+    }
+    
+    .footer-section ul li a:hover {
+      color: var(--white);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+      }
+      
+      .logo {
+        margin-bottom: 1rem;
+      }
+      
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav ul li {
+        margin: 0 0.7rem 0.5rem;
+      }
+      
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .page-description {
+        font-size: 1rem;
+      }
+      
+      .announcement-meta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .announcement-date {
+        margin-bottom: 0.5rem;
+      }
+      
+      .announcement-footer {
+        flex-direction: column;
+      }
+      
+      .announcement-contact {
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <a href="../index.html">理工サーキュラー</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../feature/shukatsu-joshikai-2025/index.html">特集</a></li>
+          <li><a href="../career-guide/index.html">就活ガイド</a></li>
+          <li><a href="../research-story/suzuki-history/index.html">研究歴</a></li>
+          <li><a href="../labs/sato-lab.html">研究室紹介</a></li>
+          <li><a href="../culture/books.html">Culture</a></li>
+          <li><a href="../news/announcements-2025w.html">お知らせ</a></li>
+          <li><a href="../about/circular.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <ul>
+        <li><a href="../index.html">ホーム</a></li>
+        <li><a href="#">お知らせ</a></li>
+        <li>2025年冬号</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">お知らせ</h1>
+      <p class="page-description">理工学部からの最新情報や重要なお知らせをご確認ください。</p>
+    </div>
+  </section>
+
+  <section class="announcements">
+    <div class="container">
+      <div class="section-title">
+        <h2>2025年冬号のお知らせ</h2>
+      </div>
+      
+      <div class="announcement">
+        <div class="announcement-header">
+          <h3 class="announcement-title">日大理工最大の就活準備イベント 業界・企業研究セミナー開催中！</h3>
+          <div class="announcement-meta">
+            <div class="announcement-date">令和6年10月～令和7年2月</div>
+            <div class="announcement-department">就職指導課</div>
+          </div>
+        </div>
+        <div class="announcement-content">
+          <p>日大理工のOB・OG・人事担当者の協力を得て業界・企業セミナーを行っています。仕事を知る！感じる！比べる！機会につながります。</p>
+          
+          <ul>
+            <li><strong>全学年・全学科が参加対象！</strong></li>
+            <li><strong>2月は合同・対面形式です！</strong><br>
+            令和7年2月5・6日（水・木）、21日（金）<br>
+            140社参加予定（理工学部駿河台校舎開催）</li>
+          </ul>
+          
+          <p><strong>参加企業一例</strong></p>
+          <p>TOPPAN、ゼンリン、Sky、カプコン、日本コムシス、東京電力ホールディングス、日清食品ホールディングス、日清紡ホールディングス、東芝、IHI、全日本空輸（ANA）、アクセンチュア、テルモ、NTN、東京都庁、三菱電機ソフトウエア、五洋建設、北海道庁、前田建設工業、東日本旅客鉄道、首都高速道路、日本電気（NEC）、日立建機、東京地下鉄、住友大阪セメント、トヨタ自動車東日本、特別区、パナソニック エレクトリックワークス社、キヤノン ほか、毎年多数の参加・協力をいただいています。</p>
+        </div>
+        <div class="announcement-footer">
+          <div class="announcement-contact">問い合わせ：就職指導課</div>
+          <a href="https://sites.google.com/view/cstcareer/seminar" target="_blank" class="announcement-link">特設サイトを見る</a>
+        </div>
+      </div>
+      
+      <div class="announcement">
+        <div class="announcement-header">
+          <h3 class="announcement-title">日本大学大学院理工学研究科入試情報</h3>
+          <div class="announcement-meta">
+            <div class="announcement-date">令和7年4月入学予定者</div>
+            <div class="announcement-department">教務課（入試係）</div>
+          </div>
+        </div>
+        <div class="announcement-content">
+          <p><strong>博士前期課程（一般第３期）</strong><br>
+          <strong>博士後期課程（一般第２期）</strong></p>
+          
+          <ul>
+            <li><strong>Web登録期間</strong> 1月27日（月）～2月10日（月）18時まで</li>
+            <li><strong>出願期間</strong> 2月7日（金）～2月14日（金）</li>
+            <li><strong>試験日</strong> 3月8日（土）</li>
+            <li><strong>合格発表</strong> 3月12日（水）15時</li>
+          </ul>
+          
+          <p>※いずれも令和7年</p>
+          
+          <p>上記の入学試験日程は、令和7年4月入学予定者の学生募集日程です。出願にあたっては、受験を希望する入学試験の募集要項を確認の上、出願してください。</p>
+        </div>
+        <div class="announcement-footer">
+          <div class="announcement-contact">問い合わせ：教務課（入試係）</div>
+          <a href="http://nucst-admission.jp/gr/" target="_blank" class="announcement-link">募集要項を見る</a>
+        </div>
+      </div>
+      
+      <div class="announcement">
+        <div class="announcement-header">
+          <h3 class="announcement-title">CST VR EXHIBITION HALL 公開中</h3>
+          <div class="announcement-meta">
+            <div class="announcement-date">常時公開</div>
+            <div class="announcement-department">庶務課</div>
+          </div>
+        </div>
+        <div class="announcement-content">
+          <p>まるで現地にいるような感覚で理工学部の魅力を楽しんでいただける VR 空間「CST VR EXHIBITION HALL」。その中には、理工学部の14学科と短期大学部のブースが並び、それぞれのブースでは、学科の魅力を紹介するさまざまな動画やポスター等が公開されています。コンテンツ数は、なんと100以上！</p>
+          
+          <p>イベント開催時には、クリックするだけで教員や学生たちとオンラインでつながるイベント会場にもなります。メインステージにも、さまざまなプログラムを掲示しています。</p>
+          
+          <p>参加は簡単。事前申し込み不要で、いつでも、どなたでも、アクセスするだけで楽しんでいただけます。</p>
+        </div>
+        <div class="announcement-footer">
+          <div class="announcement-contact">問い合わせ：庶務課</div>
+          <a href="https://vr.cst.nihon-u.ac.jp/" target="_blank" class="announcement-link">VR展示会場へアクセス</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>理工サーキュラー</h3>
+          <ul>
+            <li><a href="../about/circular.html">雑誌紹介</a></li>
+            <li><a href="../about/circular.html#backnumber">バックナンバー</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>コンテンツ</h3>
+          <ul>
+            <li><a href="../feature/shukatsu-joshikai-2025/index.html">特集：就活女子会2025</a></li>
+            <li><a href="../career-guide/index.html">就活ガイド</a></li>
+            <li><a href="../research-story/suzuki-history/index.html">研究歴</a></li>
+            <li><a href="../labs/sato-lab.html">研究室紹介</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>日本大学理工学部</h3>
+          <ul>
+            <li><a href="https://www.cst.nihon-u.ac.jp/" target="_blank">公式サイト</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/campus/" target="_blank">キャンパス案内</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/about/contact.html" target="_blank">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 日本大学理工学部広報委員会</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

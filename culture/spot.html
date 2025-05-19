@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お出かけSpot | Culture | 理工サーキュラー</title>
+  <style>
+    :root {
+      --primary-color: #004098;
+      --secondary-color: #0066cc;
+      --accent-color: #ff6600;
+      --light-gray: #f5f5f5;
+      --dark-gray: #333333;
+      --text-color: #333333;
+      --white: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--white);
+    }
+    
+    a {
+      text-decoration: none;
+      color: var(--secondary-color);
+      transition: color 0.3s;
+    }
+    
+    a:hover {
+      color: var(--accent-color);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .logo a {
+      color: var(--white);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 1.5rem;
+    }
+    
+    nav ul li a {
+      color: var(--white);
+      font-weight: 500;
+    }
+    
+    nav ul li a:hover {
+      color: #f0f0f0;
+    }
+    
+    /* Breadcrumb */
+    .breadcrumb {
+      background-color: var(--light-gray);
+      padding: 0.8rem 0;
+      font-size: 0.9rem;
+    }
+    
+    .breadcrumb ul {
+      list-style: none;
+      display: flex;
+    }
+    
+    .breadcrumb ul li {
+      display: flex;
+      align-items: center;
+    }
+    
+    .breadcrumb ul li:not(:last-child)::after {
+      content: "›";
+      margin: 0 0.5rem;
+      color: #999;
+    }
+    
+    /* Page Header */
+    .page-header {
+      background-color: var(--light-gray);
+      padding: 4rem 0;
+      text-align: center;
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://via.placeholder.com/1200x600');
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+    }
+    
+    .page-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    .page-description {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    /* Spot List */
+    .spot-list {
+      padding: 4rem 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      display: inline-block;
+      background-color: var(--white);
+      padding: 0 1rem;
+      color: var(--primary-color);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: #ddd;
+      z-index: 0;
+    }
+    
+    .spots {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+    
+    .spot {
+      background-color: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .spot:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .spot-image {
+      height: 250px;
+      background-color: #eee;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .spot-info {
+      padding: 1.5rem;
+    }
+    
+    .spot-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+    
+    .spot-location {
+      font-size: 0.9rem;
+      color: var(--dark-gray);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .spot-location::before {
+      content: "📍";
+      margin-right: 0.5rem;
+    }
+    
+    .spot-description {
+      margin-bottom: 1.5rem;
+    }
+    
+    .spot-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-weight: bold;
+    }
+    
+    .spot-link::after {
+      content: " →";
+    }
+    
+    .spot-recommender {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--dark-gray);
+      text-align: right;
+      margin-top: 1rem;
+      border-top: 1px solid #eee;
+      padding-top: 1rem;
+    }
+    
+    .spot-features {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    
+    .spot-feature {
+      background-color: var(--light-gray);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Featured Spot */
+    .featured-spot {
+      margin-bottom: 4rem;
+    }
+    
+    .featured-spot-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      background-color: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    }
+    
+    .featured-spot-image {
+      height: 100%;
+      min-height: 400px;
+      background-color: #eee;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .featured-spot-info {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .featured-spot-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+    
+    .featured-spot-location {
+      font-size: 1rem;
+      color: var(--dark-gray);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .featured-spot-location::before {
+      content: "📍";
+      margin-right: 0.5rem;
+    }
+    
+    .featured-spot-description {
+      margin-bottom: 1.5rem;
+    }
+    
+    .featured-spot-features {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    
+    .featured-spot-feature {
+      background-color: var(--light-gray);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: var(--white);
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    
+    .btn:hover {
+      background-color: #e55c00;
+      color: var(--white);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 3rem 0 1.5rem;
+    }
+    
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-section ul li a {
+      color: #ccc;
+    }
+    
+    .footer-section ul li a:hover {
+      color: var(--white);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+      }
+      
+      .logo {
+        margin-bottom: 1rem;
+      }
+      
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav ul li {
+        margin: 0 0.7rem 0.5rem;
+      }
+      
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .page-description {
+        font-size: 1rem;
+      }
+      
+      .featured-spot-inner {
+        grid-template-columns: 1fr;
+      }
+      
+      .featured-spot-image {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <a href="../index.html">理工サーキュラー</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../feature/shukatsu-joshikai-2025/index.html">特集</a></li>
+          <li><a href="../career-guide/index.html">就活ガイド</a></li>
+          <li><a href="../research-story/suzuki-history/index.html">研究歴</a></li>
+          <li><a href="../labs/sato-lab.html">研究室紹介</a></li>
+          <li><a href="../culture/books.html">Culture</a></li>
+          <li><a href="../news/announcements-2025w.html">お知らせ</a></li>
+          <li><a href="../about/circular.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <ul>
+        <li><a href="../index.html">ホーム</a></li>
+        <li><a href="#">Culture</a></li>
+        <li>お出かけSpot</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">お出かけSpot</h1>
+      <p class="page-description">学生や教員がおすすめする、訪れる価値のある場所をご紹介します。休日のお出かけや気分転換に、ぜひ足を運んでみてください。</p>
+    </div>
+  </section>
+
+  <section class="featured-spot">
+    <div class="container">
+      <div class="section-title">
+        <h2>今月のおすすめスポット</h2>
+      </div>
+      
+      <div class="featured-spot-inner">
+        <div class="featured-spot-image" style="background-image: url('https://via.placeholder.com/800x600');"></div>
+        <div class="featured-spot-info">
+          <h3 class="featured-spot-title">夢の島公園</h3>
+          <p class="featured-spot-location">東京都江東区夢の島2-1</p>
+          
+          <div class="featured-spot-features">
+            <span class="featured-spot-feature">星空観察</span>
+            <span class="featured-spot-feature">自然</span>
+            <span class="featured-spot-feature">24時間利用可能</span>
+            <span class="featured-spot-feature">バーベキュー</span>
+          </div>
+          
+          <div class="featured-spot-description">
+            <p>東京都江東区にある夢の島公園は、星空観察に最適な場所です。周囲に高層建築物がなく、都心とは思えない静けさの中に美しい星空が広がります。高校や大学で学んだ天体を実際に観察でき、季節を彩る星座や天体現象を身近に感じることができます。</p>
+            <p>24時間利用可能で、昼間はバーベキューやレクリエーションで賑わい、夜には落ち着いた雰囲気の中で星空を楽しめ、大切な人と過ごす場所としても最適です。また、公園内では四季折々の野鳥や小動物が観察でき、自然との触れ合いも楽しめます。</p>
+          </div>
+          
+          <a href="https://www.yumenoshima.jp/park" target="_blank" class="btn">公式サイトを見る</a>
+          
+          <p class="spot-recommender">物理学科3年 武藤 美輝</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spot-list">
+    <div class="container">
+      <div class="section-title">
+        <h2>その他のおすすめスポット</h2>
+      </div>
+      
+      <div class="spots">
+        <div class="spot">
+          <div class="spot-image" style="background-image: url('https://via.placeholder.com/600x400');"></div>
+          <div class="spot-info">
+            <h3 class="spot-title">国立科学博物館</h3>
+            <p class="spot-location">東京都台東区上野公園7-20</p>
+            
+            <div class="spot-features">
+              <span class="spot-feature">博物館</span>
+              <span class="spot-feature">科学</span>
+              <span class="spot-feature">展示</span>
+            </div>
+            
+            <div class="spot-description">
+              <p>日本最大級の科学博物館で、自然史や科学技術に関する展示が充実しています。特に理工系学生にとっては、専門分野の歴史や最新の研究成果に触れることができる貴重な場所です。常設展示だけでなく、定期的に開催される特別展も見逃せません。</p>
+            </div>
+            
+            <a href="https://www.kahaku.go.jp/" target="_blank" class="spot-link">公式サイトを見る</a>
+            
+            <p class="spot-recommender">物質応用化学科2年 田中 優子</p>
+          </div>
+        </div>
+        
+        <div class="spot">
+          <div class="spot-image" style="background-image: url('https://via.placeholder.com/600x400');"></div>
+          <div class="spot-info">
+            <h3 class="spot-title">日本科学未来館</h3>
+            <p class="spot-location">東京都江東区青海2-3-6</p>
+            
+            <div class="spot-features">
+              <span class="spot-feature">科学館</span>
+              <span class="spot-feature">体験型</span>
+              <span class="spot-feature">最先端技術</span>
+            </div>
+            
+            <div class="spot-description">
+              <p>最先端の科学技術を体験できる施設です。特に人工知能やロボット工学、宇宙開発などの展示が充実しており、実際に触れて体験することができます。定期的に開催されるトークイベントやワークショップも魅力的です。</p>
+            </div>
+            
+            <a href="https://www.miraikan.jst.go.jp/" target="_blank" class="spot-link">公式サイトを見る</a>
+            
+            <p class="spot-recommender">情報工学科3年 佐々木 健太</p>
+          </div>
+        </div>
+        
+        <div class="spot">
+          <div class="spot-image" style="background-image: url('https://via.placeholder.com/600x400');"></div>
+          <div class="spot-info">
+            <h3 class="spot-title">葛西臨海公園</h3>
+            <p class="spot-location">東京都江戸川区臨海町6-2-1</p>
+            
+            <div class="spot-features">
+              <span class="spot-feature">水族館</span>
+              <span class="spot-feature">自然</span>
+              <span class="spot-feature">散策</span>
+            </div>
+            
+            <div class="spot-description">
+              <p>東京湾に面した広大な公園で、葛西臨海水族園も併設されています。海洋生物の研究に興味がある学生にはぜひ訪れてほしい場所です。また、広い芝生広場や観覧車もあり、リフレッシュするのに最適なスポットです。</p>
+            </div>
+            
+            <a href="https://www.tokyo-park.or.jp/park/format/index039.html" target="_blank" class="spot-link">公式サイトを見る</a>
+            
+            <p class="spot-recommender">海洋建築工学科2年 山田 花子</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>理工サーキュラー</h3>
+          <ul>
+            <li><a href="../about/circular.html">雑誌紹介</a></li>
+            <li><a href="../about/circular.html#backnumber">バックナンバー</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>コンテンツ</h3>
+          <ul>
+            <li><a href="../feature/shukatsu-joshikai-2025/index.html">特集：就活女子会2025</a></li>
+            <li><a href="../career-guide/index.html">就活ガイド</a></li>
+            <li><a href="../research-story/suzuki-history/index.html">研究歴</a></li>
+            <li><a href="../labs/sato-lab.html">研究室紹介</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>日本大学理工学部</h3>
+          <ul>
+            <li><a href="https://www.cst.nihon-u.ac.jp/" target="_blank">公式サイト</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/campus/" target="_blank">キャンパス案内</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/about/contact.html" target="_blank">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 日本大学理工学部広報委員会</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

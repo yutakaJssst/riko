@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>雑誌紹介 & バックナンバー | 理工サーキュラー</title>
+  <style>
+    :root {
+      --primary-color: #004098;
+      --secondary-color: #0066cc;
+      --accent-color: #ff6600;
+      --light-gray: #f5f5f5;
+      --dark-gray: #333333;
+      --text-color: #333333;
+      --white: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--white);
+    }
+    
+    a {
+      text-decoration: none;
+      color: var(--secondary-color);
+      transition: color 0.3s;
+    }
+    
+    a:hover {
+      color: var(--accent-color);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .logo a {
+      color: var(--white);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 1.5rem;
+    }
+    
+    nav ul li a {
+      color: var(--white);
+      font-weight: 500;
+    }
+    
+    nav ul li a:hover {
+      color: #f0f0f0;
+    }
+    
+    /* Breadcrumb */
+    .breadcrumb {
+      background-color: var(--light-gray);
+      padding: 0.8rem 0;
+      font-size: 0.9rem;
+    }
+    
+    .breadcrumb ul {
+      list-style: none;
+      display: flex;
+    }
+    
+    .breadcrumb ul li {
+      display: flex;
+      align-items: center;
+    }
+    
+    .breadcrumb ul li:not(:last-child)::after {
+      content: "›";
+      margin: 0 0.5rem;
+      color: #999;
+    }
+    
+    /* Page Header */
+    .page-header {
+      background-color: var(--light-gray);
+      padding: 4rem 0;
+      text-align: center;
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://via.placeholder.com/1200x600');
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+    }
+    
+    .page-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    .page-description {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    /* Magazine Info */
+    .magazine-info {
+      padding: 4rem 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      display: inline-block;
+      background-color: var(--white);
+      padding: 0 1rem;
+      color: var(--primary-color);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: #ddd;
+      z-index: 0;
+    }
+    
+    .magazine-overview {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .magazine-cover {
+      text-align: center;
+    }
+    
+    .magazine-cover img {
+      max-width: 100%;
+      height: auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      border-radius: 8px;
+    }
+    
+    .magazine-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .magazine-details h3 {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .magazine-details p {
+      margin-bottom: 1rem;
+    }
+    
+    .magazine-details ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .magazine-details ul li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .magazine-staff {
+      background-color: var(--light-gray);
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 3rem;
+    }
+    
+    .magazine-staff h3 {
+      font-size: 1.3rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .staff-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    
+    .staff-category {
+      margin-bottom: 1.5rem;
+    }
+    
+    .staff-category h4 {
+      font-size: 1.1rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.3rem;
+    }
+    
+    .staff-category ul {
+      list-style: none;
+    }
+    
+    .staff-category ul li {
+      margin-bottom: 0.3rem;
+    }
+    
+    /* Back Issues */
+    .back-issues {
+      padding: 4rem 0;
+      background-color: var(--light-gray);
+    }
+    
+    .issues-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .issue-card {
+      background-color: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .issue-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .issue-cover {
+      height: 300px;
+      background-color: #eee;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .issue-info {
+      padding: 1.5rem;
+    }
+    
+    .issue-number {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+      color: var(--primary-color);
+    }
+    
+    .issue-date {
+      font-size: 0.9rem;
+      color: var(--dark-gray);
+      margin-bottom: 1rem;
+    }
+    
+    .issue-highlights {
+      margin-bottom: 1.5rem;
+    }
+    
+    .issue-highlights h4 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+    
+    .issue-highlights ul {
+      list-style: none;
+      margin-left: 0.5rem;
+    }
+    
+    .issue-highlights ul li {
+      margin-bottom: 0.3rem;
+      position: relative;
+      padding-left: 1rem;
+    }
+    
+    .issue-highlights ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+    }
+    
+    .issue-link {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+    }
+    
+    .issue-link:hover {
+      background-color: #e55c00;
+      color: var(--white);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 3rem 0 1.5rem;
+    }
+    
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-section ul li a {
+      color: #ccc;
+    }
+    
+    .footer-section ul li a:hover {
+      color: var(--white);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+      }
+      
+      .logo {
+        margin-bottom: 1rem;
+      }
+      
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav ul li {
+        margin: 0 0.7rem 0.5rem;
+      }
+      
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .page-description {
+        font-size: 1rem;
+      }
+      
+      .magazine-overview {
+        grid-template-columns: 1fr;
+      }
+      
+      .magazine-cover {
+        margin-bottom: 1.5rem;
+      }
+      
+      .magazine-cover img {
+        max-width: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <a href="../index.html">理工サーキュラー</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../feature/shukatsu-joshikai-2025/index.html">特集</a></li>
+          <li><a href="../career-guide/index.html">就活ガイド</a></li>
+          <li><a href="../research-story/suzuki-history/index.html">研究歴</a></li>
+          <li><a href="../labs/sato-lab.html">研究室紹介</a></li>
+          <li><a href="../culture/books.html">Culture</a></li>
+          <li><a href="../news/announcements-2025w.html">お知らせ</a></li>
+          <li><a href="../about/circular.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <ul>
+        <li><a href="../index.html">ホーム</a></li>
+        <li>雑誌紹介 & バックナンバー</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">理工サーキュラー</h1>
+      <p class="page-description">日本大学理工学部の情報誌</p>
+    </div>
+  </section>
+
+  <section class="magazine-info">
+    <div class="container">
+      <div class="section-title">
+        <h2>雑誌紹介</h2>
+      </div>
+      
+      <div class="magazine-overview">
+        <div class="magazine-cover">
+          <img src="https://via.placeholder.com/300x400" alt="理工サーキュラー最新号表紙">
+        </div>
+        <div class="magazine-details">
+          <h3>理工サーキュラー No.203（2025年冬号）</h3>
+          <p>「理工サーキュラー」は、日本大学理工学部の教育・研究活動や学生の活躍、キャンパスライフなどを紹介する情報誌です。年4回（春・夏・秋・冬）発行され、学生、教職員、卒業生、企業、高校などに配布されています。</p>
+          
+          <p>最新号の主な内容：</p>
+          <ul>
+            <li><strong>特集：</strong>就活女子会2025</li>
+            <li><strong>就活ガイド：</strong>理工学部の活用術５選</li>
+            <li><strong>研究歴：</strong>自分史・コンピュータ史 ―さまざまな恩師との出会い（物理学科教授 鈴木 潔光）</li>
+            <li><strong>研究室紹介：</strong>佐藤信治研究室（海洋建築工学科）、吉川研究室（電気工学科）</li>
+            <li><strong>Culture：</strong>書籍紹介、お出かけSpot</li>
+            <li><strong>お知らせ：</strong>業界・企業研究セミナー、大学院入試情報、CST VR EXHIBITION HALL</li>
+            <li><strong>イベント報告：</strong>第68回理工学部学術講演会</li>
+          </ul>
+          
+          <p>創刊：1972年（昭和47年）<br>
+          発行：年4回（春・夏・秋・冬）<br>
+          判型：A4判<br>
+          ページ数：16ページ</p>
+        </div>
+      </div>
+      
+      <div class="magazine-staff">
+        <h3>編集スタッフ</h3>
+        <div class="staff-list">
+          <div class="staff-category">
+            <h4>広報委員長・編集長</h4>
+            <ul>
+              <li>佐伯 勝敏</li>
+            </ul>
+          </div>
+          
+          <div class="staff-category">
+            <h4>編集委員会</h4>
+            <ul>
+              <li>山中新太郎</li>
+              <li>沖 和磨</li>
+              <li>梶山 貴弘</li>
+              <li>佐藤 正己</li>
+              <li>山中 光一</li>
+              <li>佐藤 光彦</li>
+              <li>泉山 塁威</li>
+              <li>菅原 遼</li>
+              <li>落合 正行</li>
+              <li>関谷 直樹</li>
+              <li>金子 美泉</li>
+              <li>阿部 新助</li>
+              <li>吉川 将洋</li>
+              <li>大谷 昭仁</li>
+              <li>松野 裕</li>
+              <li>遠山 岳史</li>
+              <li>三輪 光嗣</li>
+              <li>平石 秀史</li>
+              <li>桑本 剛</li>
+              <li>牧野 宏司</li>
+              <li>森 大樹</li>
+              <li>池田 竜男</li>
+              <li>大野 勉</li>
+              <li>海老原直人</li>
+              <li>矢葺 未来</li>
+              <li>鈴木 智子</li>
+              <li>髙見沢恵里</li>
+            </ul>
+          </div>
+          
+          <div class="staff-category">
+            <h4>制作</h4>
+            <ul>
+              <li>株式会社ムーンドッグ</li>
+              <li>長谷川 香</li>
+              <li>細田 明子</li>
+              <li>熊木美千代</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="backnumber" class="back-issues">
+    <div class="container">
+      <div class="section-title">
+        <h2>バックナンバー</h2>
+      </div>
+      
+      <div class="issues-grid">
+        <div class="issue-card">
+          <div class="issue-cover" style="background-image: url('https://via.placeholder.com/300x400');"></div>
+          <div class="issue-info">
+            <h3 class="issue-number">No.202（2024年秋号）</h3>
+            <p class="issue-date">2024年10月発行</p>
+            <div class="issue-highlights">
+              <h4>主な内容</h4>
+              <ul>
+                <li>特集：理工学部の研究最前線</li>
+                <li>研究室紹介：量子科学研究所</li>
+                <li>学生プロジェクト活動報告</li>
+              </ul>
+            </div>
+            <a href="#" class="issue-link">閲覧する</a>
+          </div>
+        </div>
+        
+        <div class="issue-card">
+          <div class="issue-cover" style="background-image: url('https://via.placeholder.com/300x400');"></div>
+          <div class="issue-info">
+            <h3 class="issue-number">No.201（2024年夏号）</h3>
+            <p class="issue-date">2024年7月発行</p>
+            <div class="issue-highlights">
+              <h4>主な内容</h4>
+              <ul>
+                <li>特集：新入生歓迎号</li>
+                <li>キャンパスライフガイド</li>
+                <li>学科紹介</li>
+              </ul>
+            </div>
+            <a href="#" class="issue-link">閲覧する</a>
+          </div>
+        </div>
+        
+        <div class="issue-card">
+          <div class="issue-cover" style="background-image: url('https://via.placeholder.com/300x400');"></div>
+          <div class="issue-info">
+            <h3 class="issue-number">No.200（2024年春号）</h3>
+            <p class="issue-date">2024年4月発行</p>
+            <div class="issue-highlights">
+              <h4>主な内容</h4>
+              <ul>
+                <li>特集：創刊200号記念</li>
+                <li>理工学部の歴史と未来</li>
+                <li>卒業生インタビュー</li>
+              </ul>
+            </div>
+            <a href="#" class="issue-link">閲覧する</a>
+          </div>
+        </div>
+        
+        <div class="issue-card">
+          <div class="issue-cover" style="background-image: url('https://via.placeholder.com/300x400');"></div>
+          <div class="issue-info">
+            <h3 class="issue-number">No.199（2024年冬号）</h3>
+            <p class="issue-date">2024年1月発行</p>
+            <div class="issue-highlights">
+              <h4>主な内容</h4>
+              <ul>
+                <li>特集：SDGsへの取り組み</li>
+                <li>研究室紹介</li>
+                <li>学生の活躍</li>
+              </ul>
+            </div>
+            <a href="#" class="issue-link">閲覧する</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>理工サーキュラー</h3>
+          <ul>
+            <li><a href="../about/circular.html">雑誌紹介</a></li>
+            <li><a href="../about/circular.html#backnumber">バックナンバー</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>コンテンツ</h3>
+          <ul>
+            <li><a href="../feature/shukatsu-joshikai-2025/index.html">特集：就活女子会2025</a></li>
+            <li><a href="../career-guide/index.html">就活ガイド</a></li>
+            <li><a href="../research-story/suzuki-history/index.html">研究歴</a></li>
+            <li><a href="../labs/sato-lab.html">研究室紹介</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>日本大学理工学部</h3>
+          <ul>
+            <li><a href="https://www.cst.nihon-u.ac.jp/" target="_blank">公式サイト</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/campus/" target="_blank">キャンパス案内</a></li>
+            <li><a href="https://www.cst.nihon-u.ac.jp/about/contact.html" target="_blank">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 日本大学理工学部広報委員会</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
